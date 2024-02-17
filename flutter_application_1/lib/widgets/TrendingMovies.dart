@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_application_1/Constants.dart';
 
 class TrendingMovies extends StatelessWidget {
   const TrendingMovies({
-    super.key,
+    super.key, required this.snapshot,
   });
+
+final AsyncSnapshot snapshot;  
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width :double.infinity,
       child: CarouselSlider.builder(
-        itemCount: 10,
+        itemCount: snapshot.data!.length,
         options: CarouselOptions(
           aspectRatio: 16/9,
           height: 300,
@@ -25,10 +28,13 @@ class TrendingMovies extends StatelessWidget {
         itemBuilder: (context,itemIndex,pageViewIndex){
           return ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Container(
+            child: SizedBox(
               height: 300, 
               width:200,
-              color: Colors.cyan,
+              child: Image.network(
+                filterQuality: FilterQuality.high,
+                fit: BoxFit.cover,
+                '${Constants.imagePath}${snapshot.data[itemIndex].poster_path}',)
             )
           );
         }

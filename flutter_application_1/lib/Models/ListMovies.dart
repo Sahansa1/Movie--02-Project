@@ -27,9 +27,9 @@ class ListMovies{
       original_title: json["original_title"], 
       overview: json["overview"], 
       poster_path: json["poster_path"], 
-      popularity: json["popularity"], 
+      popularity: json["popularity"].toDouble(), 
       release_date: json["release_date"], 
-      vote_average: json["vote_average"],
+      vote_average: json["vote_average"].toDouble(),
     );
   }
 

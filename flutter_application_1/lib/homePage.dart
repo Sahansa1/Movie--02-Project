@@ -15,11 +15,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<List<ListMovies>> trendingMovies;
+  late Future<List<ListMovies>> topratedMovies;
+  late Future<List<ListMovies>> upcomingMovies;
 
   @override
   void initState() {
     super.initState();
     trendingMovies = API().getTrendingMovies();
+    topratedMovies = API().getTopRatedMovies();
+    upcomingMovies = API().getUpComingMovies();
   }
 
   @override
@@ -53,19 +57,64 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   'Trending Movies',
                 ),
-                SizedBox(height: 16),
-                TrendingMovies(),
+                const SizedBox(height: 16),
+                SizedBox(
+                  child: FutureBuilder(
+                    future: trendingMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return TrendingMovies(snapshot: snapshot);
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
+                ), // <-- Add comma here
                 SizedBox(height: 16),
                 Text(
                   "Top rated movies",
                 ),
                 SizedBox(height: 5),
-                Movies(),
+                SizedBox(
+                  child: FutureBuilder(
+                    future: topratedMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return Movies(snapshot: snapshot);
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
+                ), // <-- 
                 Text(
                   "Upcoming movies",
                 ),
                 SizedBox(height: 5),
-                Movies(),
+                SizedBox(
+                  child: FutureBuilder(
+                    future: upcomingMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return Movies(snapshot: snapshot);
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
+                ), //
               ],
             ),
           ),
@@ -74,5 +123,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
