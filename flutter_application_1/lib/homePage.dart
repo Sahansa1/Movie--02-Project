@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/API/API.dart';
+import 'package:flutter_application_1/Models/ListMovies.dart';
 import 'package:flutter_application_1/widgets/Movies.dart';
 import 'package:flutter_application_1/widgets/TrendingMovies.dart';
 
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+
+class _HomeScreenState extends State<HomeScreen> {
+  late Future<List<ListMovies>> trendingMovies;
+
+  @override
+  void initState() {
+    super.initState();
+    trendingMovies = API().getTrendingMovies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -55,3 +74,5 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
