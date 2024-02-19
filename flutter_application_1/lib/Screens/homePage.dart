@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   "Top rated movies",
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 16),
                 SizedBox(
                   child: FutureBuilder(
                     future: topratedMovies,
