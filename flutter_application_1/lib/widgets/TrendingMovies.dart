@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_1/Constants.dart';
+import 'package:flutter_application_1/Screens/DetailedScreen.dart';
 
 class TrendingMovies extends StatelessWidget {
   const TrendingMovies({
@@ -26,16 +27,28 @@ final AsyncSnapshot snapshot;
           autoPlayAnimationDuration: const Duration(seconds: 1)
         ),
         itemBuilder: (context,itemIndex,pageViewIndex){
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: SizedBox(
-              height: 300, 
-              width:200,
-              child: Image.network(
-                filterQuality: FilterQuality.high,
-                fit: BoxFit.cover,
-                '${Constants.imagePath}${snapshot.data[itemIndex].poster_path}',)
-            )
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsScreen(
+                    movie: snapshot.data[itemIndex],
+                  ),
+                ),
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: SizedBox(
+                height: 300, 
+                width:200,
+                child: Image.network(
+                  filterQuality: FilterQuality.high,
+                  fit: BoxFit.cover,
+                  '${Constants.imagePath}${snapshot.data[itemIndex].poster_path}',)
+              )
+            ),
           );
         }
         
