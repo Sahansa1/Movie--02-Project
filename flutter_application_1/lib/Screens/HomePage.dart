@@ -31,30 +31,30 @@ class _HomeScreenState extends State<HomeScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("BingeWatch"),
+          title: const Text("BingeWatch"),
           leading: IconButton(
-            icon: Icon(Icons.menu),
+            icon: const Icon(Icons.menu),
             onPressed: () {},
           ),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.more_vert),
+              icon: const Icon(Icons.more_vert),
             )
           ],
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Trending Movies',
                 ),
                 const SizedBox(height: 16),
@@ -69,16 +69,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else if (snapshot.hasData) {
                         return TrendingMovies(snapshot: snapshot);
                       } else {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
-                ), // <-- Add comma here
-                SizedBox(height: 16),
-                Text(
+                ),
+                const SizedBox(height: 16),
+                const Text(
                   "Top rated movies",
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 SizedBox(
                   child: FutureBuilder(
                     future: topratedMovies,
@@ -90,15 +90,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else if (snapshot.hasData) {
                         return Movies(snapshot: snapshot);
                       } else {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
-                ), // <-- 
-                Text(
+                ),  
+                const Text(
                   "Upcoming movies",
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 SizedBox(
                   child: FutureBuilder(
                     future: upcomingMovies,
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else if (snapshot.hasData) {
                         return Movies(snapshot: snapshot);
                       } else {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),

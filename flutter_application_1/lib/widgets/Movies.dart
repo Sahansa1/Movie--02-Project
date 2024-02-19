@@ -20,6 +20,11 @@ class Movies extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: snapshot.data!.length,
         itemBuilder: (context, index) {
+          String releaseYear = '';
+          if (snapshot.data![index].release_date != null) {
+            DateTime releaseDate = DateTime.parse(snapshot.data![index].release_date);
+            releaseYear = releaseDate.year.toString();
+          }
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child:GestureDetector(
@@ -33,24 +38,76 @@ class Movies extends StatelessWidget {
                  ),
                 );
               },
-              
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: SizedBox(
-                  height:200,
-                  width:200,
-                  child: Image.network(
-                    filterQuality: FilterQuality.high,
-                    fit: BoxFit.cover,
-                    '${Constants.imagePath}${snapshot.data![index].poster_path}'
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: SizedBox(
+                      height: 250,
+                      width: 200,
+                      child: Image.network(
+                        '${Constants.imagePath}${snapshot.data![index].poster_path}',
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                )
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        snapshot.data![index].title, 
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      
+                      Text(
+                        releaseYear, 
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            )
+            ),
           );
         },
       ),
     );
   }
 }
+                 // const SizedBox(height: 3), 
+               //   Text(
+                 //   snapshot.data![index].title, 
+                //    style: const TextStyle(
+                 //     fontSize: 16,
+                 //     fontWeight: FontWeight.bold,
+                 //   ),
+               //   ),
+              //  ],
+            //  ),
+            ////  child: ClipRRect(
+             //   borderRadius: BorderRadius.circular(8),
+           //     child: SizedBox(
+           //       height:200,
+           //       width:200,
+           //       child: Image.network(
+           //         filterQuality: FilterQuality.high,
+            //        fit: BoxFit.cover,
+             //       '${Constants.imagePath}${snapshot.data![index].poster_path}'
+              //    ),
 
+
+
+               //   child: Image.network(
+               //     filterQuality: FilterQuality.high,
+               //     fit: BoxFit.cover,
+               //     '${Constants.imagePath}${snapshot.data![index].poster_path}'
+              //    ),
+                  
