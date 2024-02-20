@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/API/API.dart';
 import 'package:flutter_application_1/Models/ListMovies.dart';
 import 'package:flutter_application_1/widgets/Movies.dart';
+import 'package:flutter_application_1/widgets/NavigationDrawer.dart';
 import 'package:flutter_application_1/widgets/TrendingMovies.dart';
+
 
 
 class HomeScreen extends StatefulWidget {
@@ -30,15 +32,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        drawer: MenuDrawer(),
         appBar: AppBar(
           title: const Text("BingeWatch"),
-          leading: IconButton(
+          /*leading: IconButton(
             icon: const Icon(Icons.menu),
             onPressed: (){
-              Scaffold.of(context).openDrawer(); 
+              Scaffold.of(context).openDrawer();
+              
             }
             
-          ),
+          ),*/
           actions: [
             IconButton(
               onPressed: () {},
@@ -50,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
+        
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
