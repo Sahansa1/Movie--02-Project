@@ -18,7 +18,7 @@ class DetailsScreen extends StatelessWidget {
           leading: const BackButton(),
 
           backgroundColor: Colors.amber,
-          expandedHeight: 500,
+          expandedHeight:500,
           pinned: true,
           flexibleSpace: FlexibleSpaceBar(
             title:Text(movie.title),

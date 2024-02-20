@@ -34,7 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text("BingeWatch"),
           leading: IconButton(
             icon: const Icon(Icons.menu),
-            onPressed: () {},
+            onPressed: (){
+              Scaffold.of(context).openDrawer(); 
+            }
+            
           ),
           actions: [
             IconButton(
