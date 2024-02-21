@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Constants.dart';
 import 'package:flutter_application_1/Models/ListMovies.dart';
 
-class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({
+class MovieDetailsScreen extends StatelessWidget {
+  const MovieDetailsScreen({
     super.key, 
     required this.movie
     });

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_1/Constants.dart';
-import 'package:flutter_application_1/Screens/MovieDetailedScreen.dart';
 
-class TrendingMovies extends StatelessWidget {
-  const TrendingMovies({
+import 'package:flutter_application_1/Screens/SeriesDetailedScreen.dart';
+
+class TrendingSeries extends StatelessWidget {
+  const TrendingSeries({
     super.key, required this.snapshot,
   });
 
@@ -32,8 +33,8 @@ final AsyncSnapshot snapshot;
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MovieDetailsScreen(
-                    movie: snapshot.data[itemIndex],
+                  builder: (context) => SeriesDetailsScreen(
+                    series: snapshot.data[itemIndex],
                   ),
                 ),
               );
@@ -46,7 +47,8 @@ final AsyncSnapshot snapshot;
                 child: Image.network(
                   filterQuality: FilterQuality.high,
                   fit: BoxFit.cover,
-                  '${Constants.imagePath}${snapshot.data[itemIndex].poster_path}',)
+                  '${Constants.imagePath}${snapshot.data[itemIndex].poster_path}',
+                )
               )
             ),
           );

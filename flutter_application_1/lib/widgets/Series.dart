@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Constants.dart';
-import 'package:flutter_application_1/Screens/MovieDetailedScreen.dart';
+import 'package:flutter_application_1/Screens/SeriesDetailedScreen.dart';
 
-class Movies extends StatelessWidget {
-  const Movies({
+class Series extends StatelessWidget {
+  const Series({
     super.key, required this.snapshot,
   });
 
@@ -21,8 +21,8 @@ class Movies extends StatelessWidget {
         itemCount: snapshot.data!.length,
         itemBuilder: (context, index) {
           String releaseYear = '';
-          if (snapshot.data![index].release_date != null) {
-            DateTime releaseDate = DateTime.parse(snapshot.data![index].release_date);
+          if (snapshot.data![index].first_air_date != null) {
+            DateTime releaseDate = DateTime.parse(snapshot.data![index].first_air_date);
             releaseYear = releaseDate.year.toString();
           }
           return Padding(
@@ -32,8 +32,8 @@ class Movies extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MovieDetailsScreen(
-                      movie: snapshot.data[index],
+                    builder: (context) => SeriesDetailsScreen(
+                      series: snapshot.data[index],
                     ),
                  ),
                 );
@@ -57,7 +57,7 @@ class Movies extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        snapshot.data![index].title, 
+                        snapshot.data![index].name, 
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -82,32 +82,3 @@ class Movies extends StatelessWidget {
     );
   }
 }
-                 // const SizedBox(height: 3), 
-               //   Text(
-                 //   snapshot.data![index].title, 
-                //    style: const TextStyle(
-                 //     fontSize: 16,
-                 //     fontWeight: FontWeight.bold,
-                 //   ),
-               //   ),
-              //  ],
-            //  ),
-            ////  child: ClipRRect(
-             //   borderRadius: BorderRadius.circular(8),
-           //     child: SizedBox(
-           //       height:200,
-           //       width:200,
-           //       child: Image.network(
-           //         filterQuality: FilterQuality.high,
-            //        fit: BoxFit.cover,
-             //       '${Constants.imagePath}${snapshot.data![index].poster_path}'
-              //    ),
-
-
-
-               //   child: Image.network(
-               //     filterQuality: FilterQuality.high,
-               //     fit: BoxFit.cover,
-               //     '${Constants.imagePath}${snapshot.data![index].poster_path}'
-              //    ),
-                  
