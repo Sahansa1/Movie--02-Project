@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/API/API.dart';
-import 'package:flutter_application_1/Models/ListMovies.dart';
-import 'package:flutter_application_1/Models/ListSeries.dart';
-import 'package:flutter_application_1/widgets/Movies.dart';
-import 'package:flutter_application_1/widgets/NavigationDrawer.dart';
-import 'package:flutter_application_1/widgets/Series.dart';
-import 'package:flutter_application_1/widgets/TrendingMovies.dart';
-import 'package:flutter_application_1/widgets/TrendingSeries.dart';
+import 'package:flutter_application_1/API/api.dart';
+import 'package:flutter_application_1/Models/list_movies.dart';
+import 'package:flutter_application_1/Models/list_series.dart';
+import 'package:flutter_application_1/widgets/movies.dart';
+import 'package:flutter_application_1/widgets/navigation_drawer.dart';
+import 'package:flutter_application_1/widgets/series.dart';
+import 'package:flutter_application_1/widgets/trending_movies.dart';
+import 'package:flutter_application_1/widgets/trending_series.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -31,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
     trendingSeries = API().getTrendingSeries();
     topRatedSeries = API().getTopRatedSeries();
     upComingSeries = API().getUpComingSeries();
-
   }
 
   @override

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Constants.dart';
-import 'package:flutter_application_1/Models/ListSeries.dart';
+import 'package:flutter_application_1/Models/list_movies.dart';
 
-class SeriesDetailsScreen extends StatelessWidget {
-  const SeriesDetailsScreen({
+
+class MovieDetailsScreen extends StatelessWidget {
+  const MovieDetailsScreen({
     super.key, 
-    required this.series
+    required this.movie
     });
 
-  final ListSeries series;
+  final ListMovies movie;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,9 @@ class SeriesDetailsScreen extends StatelessWidget {
           expandedHeight:500,
           pinned: true,
           flexibleSpace: FlexibleSpaceBar(
-            title:Text(series.name),
+            title:Text(movie.title),
             background: Image.network(
-              '${Constants.imagePath}${series.backdrop_path}',
+              '${Constants.imagePath}${movie.backdrop_path}',
               filterQuality: FilterQuality.high,
               fit: BoxFit.cover,
             ),
@@ -37,7 +38,7 @@ class SeriesDetailsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                series.overview,
+                movie.overview,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
@@ -55,8 +56,8 @@ class SeriesDetailsScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),  
                       ),
                       child: Row(children: [
-                        const Text('First Air Date: '),
-                        Text(series.first_air_date),
+                        const Text('Release Date: '),
+                        Text(movie.release_date),
                       ],),
                     ),
 
@@ -73,7 +74,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                         const Icon( Icons.star,
                         color: Colors.amber,
                         ),
-                        Text('${series.vote_average.toStringAsFixed(1)}/10'),
+                        Text('${movie.vote_average.toStringAsFixed(1)}/10'),
                       ],),
                     ),
 
@@ -87,21 +88,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                       ),
                       child: Row(children: [
                         const Text('Popularity: '),
-                        Text(series.popularity.toString()),
-                      ],),
-                    ),
-
-                     Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border:Border.all(
-                          color: Colors.lightBlue, 
-                          ),
-                        borderRadius: BorderRadius.circular(10),  
-                      ),
-                      child: Row(children: [
-                        const Text('Origin countries: '),
-                         Text(series.origin_country.join(', ')), 
+                        Text(movie.popularity.toString()),
                       ],),
                     ),
 

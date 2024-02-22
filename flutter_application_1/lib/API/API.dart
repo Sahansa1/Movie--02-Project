@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_application_1/Constants.dart';
-import 'package:flutter_application_1/Models/ListMovies.dart';
-import 'package:flutter_application_1/Models/ListSeries.dart';
+import 'package:flutter_application_1/Models/list_movies.dart';
+import 'package:flutter_application_1/Models/list_series.dart';
 import 'package:http/http.dart' as http;
 
 class API {
@@ -71,7 +71,7 @@ class API {
       List<ListSeries> upComingSeries = decodedData.map((item) => ListSeries.fromJson(item)).toList();
       return upComingSeries;
     } else {
-      throw Exception('Failed to load trending series');
+      throw Exception('Failed to load up coming series');
     }
   }
 
@@ -83,7 +83,7 @@ class API {
       List<ListSeries> topRatedSeries = decodedData.map((item) => ListSeries.fromJson(item)).toList();
       return topRatedSeries;
     } else {
-      throw Exception('Failed to load TopRated series');
+      throw Exception('Failed to load top rated series');
     }
   }
 }

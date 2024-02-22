@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Constants.dart';
-import 'package:flutter_application_1/Screens/SeriesDetailedScreen.dart';
+import 'package:flutter_application_1/Screens/series_detailed_screen.dart';
 
 class Series extends StatelessWidget {
   const Series({
     super.key, required this.snapshot,
   });
-
 
   final AsyncSnapshot snapshot; 
 

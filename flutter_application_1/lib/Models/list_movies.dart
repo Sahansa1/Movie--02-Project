@@ -17,7 +17,6 @@ class ListMovies{
     required this.popularity,
     required this.release_date,
     required this.vote_average,
-
   });
 
   factory ListMovies.fromJson(Map<String,dynamic> json){
@@ -32,9 +31,4 @@ class ListMovies{
       vote_average: json["vote_average"].toDouble(),
     );
   }
-
-// Map<String, dynamic> toJson() => {
-//    "title": title,
-//  "backdrop_path"  
-// }
 }

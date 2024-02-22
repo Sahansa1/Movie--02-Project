@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Constants.dart';
-import 'package:flutter_application_1/Screens/MovieDetailedScreen.dart';
+import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
 
 class Movies extends StatelessWidget {
   const Movies({
@@ -82,32 +82,5 @@ class Movies extends StatelessWidget {
     );
   }
 }
-                 // const SizedBox(height: 3), 
-               //   Text(
-                 //   snapshot.data![index].title, 
-                //    style: const TextStyle(
-                 //     fontSize: 16,
-                 //     fontWeight: FontWeight.bold,
-                 //   ),
-               //   ),
-              //  ],
-            //  ),
-            ////  child: ClipRRect(
-             //   borderRadius: BorderRadius.circular(8),
-           //     child: SizedBox(
-           //       height:200,
-           //       width:200,
-           //       child: Image.network(
-           //         filterQuality: FilterQuality.high,
-            //        fit: BoxFit.cover,
-             //       '${Constants.imagePath}${snapshot.data![index].poster_path}'
-              //    ),
 
-
-
-               //   child: Image.network(
-               //     filterQuality: FilterQuality.high,
-               //     fit: BoxFit.cover,
-               //     '${Constants.imagePath}${snapshot.data![index].poster_path}'
-              //    ),
                   
