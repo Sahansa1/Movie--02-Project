@@ -81,6 +81,9 @@ class Movies extends StatelessWidget {
       ),
     );
   }
+
+  static fromJson(json) {}
+
 }
 
                   

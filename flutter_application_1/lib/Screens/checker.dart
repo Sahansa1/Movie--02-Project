@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:flutter_application_1/widgets/movie_details.dart';
 
 class descriptioncheckui extends StatefulWidget {
   var newid;
@@ -13,6 +12,13 @@ class descriptioncheckui extends StatefulWidget {
 
 class _descriptioncheckuiState extends State<descriptioncheckui> {
   checktype() {
+    if (widget.newtype.toString() == 'movie') {
+      return MovieDetails(
+        id: widget.newid,
+      );
+    } else {
+      return errorui(context);
+    }
     
   }
 
