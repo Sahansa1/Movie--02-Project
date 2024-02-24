@@ -1,15 +1,13 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_application_1/API/api.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
 import 'package:flutter_application_1/widgets/movies.dart';
-import 'package:flutter_application_1/widgets/movies_searching.dart';
 import 'package:flutter_application_1/widgets/navigation_drawer.dart';
+import 'package:flutter_application_1/widgets/searchbarfunc.dart';
 import 'package:flutter_application_1/widgets/series.dart';
 import 'package:flutter_application_1/widgets/trending_movies.dart';
 import 'package:flutter_application_1/widgets/trending_series.dart';
-
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<ListSeries>> trendingSeries;
   late Future<List<ListSeries>> topRatedSeries;
   late Future<List<ListSeries>> upComingSeries;
-  
 
   @override
   void initState() {
@@ -37,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
     topRatedSeries = API().getTopRatedSeries();
     upComingSeries = API().getUpComingSeries();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -53,19 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: Colors.blue,
                 title: const Text("BingeWatch"),
                 actions: [
-                  InkWell(
-                    onTap: () {
-                      print('Search icon clicked');
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: const Text('Searching...')),
-                      );
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SearchPage()),
-                      );
-                    },
-                    child: const Icon(Icons.search),
-                  ),
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(Icons.settings),
@@ -108,7 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   );
                                 }
                               },
+                            
                             ),
+                            searchbarfun(),
                             const SizedBox(height: 16),
                             const Text(
                               "Top rated movies",
@@ -236,4 +221,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-*/

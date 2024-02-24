@@ -33,7 +33,7 @@ class Movies extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => MovieDetailsScreen(
-                      movie: snapshot.data[index],
+                      movie: snapshot.data[index], id: 0,
                     ),
                  ),
                 );

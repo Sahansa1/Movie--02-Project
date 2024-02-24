@@ -1,4 +1,5 @@
 class ListMovies{
+  int id;
   String title ;
   String backdrop_path;
   String original_title;
@@ -9,6 +10,7 @@ class ListMovies{
   double vote_average;
 
   ListMovies({
+    required this.id,
     required this.title,
     required this.backdrop_path,
     required this.original_title,
@@ -16,11 +18,12 @@ class ListMovies{
     required this.poster_path,
     required this.popularity,
     required this.release_date,
-    required this.vote_average,
+    required this.vote_average, required int movieId,
   });
 
   factory ListMovies.fromJson(Map<String,dynamic> json){
     return ListMovies(
+      id: json["id"],
       title: json["title"] ,
       backdrop_path: json["backdrop_path"],
       original_title: json["original_title"], 
@@ -28,7 +31,8 @@ class ListMovies{
       poster_path: json["poster_path"], 
       popularity: json["popularity"].toDouble(), 
       release_date: json["release_date"], 
-      vote_average: json["vote_average"].toDouble(),
+      vote_average: json["vote_average"].toDouble(), 
+      movieId: json["id"],
     );
   }
 }

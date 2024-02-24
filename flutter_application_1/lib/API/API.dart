@@ -13,8 +13,7 @@ class API {
     static const trendingSeriesURL ='https://api.themoviedb.org/3/trending/tv/day?api_key=${Constants.APIKey}';
     static const topRatedSeriesURL ='https://api.themoviedb.org/3/tv/top_rated?api_key=${Constants.APIKey}';
     static const upComingSeriesURL ='https://api.themoviedb.org/3/tv/top_rated?api_key=${Constants.APIKey}';
-
-    
+    static const searchMoviesURL = 'https://api.themoviedb.org/3/search/movie?api_key=${Constants.APIKey}';
 
   Future<List<ListMovies>> getTrendingMovies() async {
     final response = await http.get(Uri.parse(trendingMovieURL));
@@ -29,7 +28,7 @@ class API {
   }
 
   Future<List<ListMovies>> getTopRatedMovies() async {
-    final response = await http.get(Uri.parse(topRatedMovieURL))!;
+    final response = await http.get(Uri.parse(topRatedMovieURL));
     
     if (response.statusCode == 200) {
       final decodedData = json.decode(response.body)['results'] as List<dynamic>;
@@ -84,6 +83,20 @@ class API {
       return topRatedSeries;
     } else {
       throw Exception('Failed to load top rated series');
+    }
+  }
+
+  Future<List<ListMovies>> getSearchedMovies(String searchTerm) async {
+    final queryParameters = {'query': searchTerm};
+    final uri = Uri.parse(searchMoviesURL).replace(queryParameters: queryParameters);
+    final response = await http.get(uri);
+
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List<dynamic>;
+      List<ListMovies> searchedMovies = decodedData.map((item) => ListMovies.fromJson(item)).toList();
+      return searchedMovies;
+    } else {
+      throw Exception('Failed to search movies');
     }
   }
 }
