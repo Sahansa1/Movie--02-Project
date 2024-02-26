@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
-import 'package:flutter_application_1/widgets/movie_details.dart';
+//import 'package:flutter_application_1/widgets/movie_details.dart';
 
 class descriptioncheckui extends StatefulWidget {
   var newid;
@@ -14,7 +14,7 @@ class descriptioncheckui extends StatefulWidget {
 class _descriptioncheckuiState extends State<descriptioncheckui> {
   checktype() {
     
-      return ListMovies(
+     /* return ListMovies(
         id: widget.newid, 
         title: 'title',
          backdrop_path: '', 
@@ -25,9 +25,12 @@ class _descriptioncheckuiState extends State<descriptioncheckui> {
          popularity: 0, 
          release_date: '',
           movieId: 0,
-      );
+      );*/
     //} else {
-      //return errorui(context);
+      //
+    return errorui(context);
+
+     
     
     
   }

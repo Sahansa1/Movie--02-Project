@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
+import 'package:flutter_application_1/Screens/abc.dart';
 import 'package:flutter_application_1/Screens/checker.dart';
+//import 'package:flutter_application_1/Screens/checker.dart';
 import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
 import 'package:flutter_application_1/repttext.dart';
 import 'package:http/http.dart' as http;
@@ -157,17 +159,28 @@ Widget build(BuildContext context) {
                         scrollDirection: Axis.vertical,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
-                          
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MovieDetailsScreen(
-                                    movie: snapshot.data![index],
+                                 /* builder: (context) => MovieDetailsScreen(
+                                    movie:snapshot.data![index],
                                     id: 0,
-                                  ),
-                                ),
+                                  ),*/
+                                   /*  builder: (context) => descriptioncheckui(
+                                        searchresult[index]['id'],
+                                         searchresult[index]['media_type'],
+                                      )*/
+
+                                     builder: (context) =>  CustomListTile(
+                                      height: 200,
+
+                                      title: Text('yayy it works'),
+
+                                      
+                                      )
+                                )
                               );
                             },
                             child: Container(
