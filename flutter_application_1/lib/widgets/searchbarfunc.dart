@@ -19,8 +19,7 @@ class _searchbarfunState extends State<searchbarfun> {
   Future<List> searchlistfunction(val) async {
 
 
-
-   /* var searchurl =
+  var searchurl =
         'https://api.themoviedb.org/3/search/multi?api_key=$API&query=$val';
     var searchresponse = await http.get(Uri.parse(searchurl));
     
@@ -52,7 +51,7 @@ class _searchbarfunState extends State<searchbarfun> {
   } else {
     return [];
   }
-}*/
+}
 
 final TextEditingController searchtext = TextEditingController();
   bool showlist = false;
@@ -74,8 +73,8 @@ Widget build(BuildContext context) {
             height: 50,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 38, 30, 30).withOpacity(0.2),
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: const Color.fromARGB(255, 38, 30, 30).withOpacity(0.2),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: TextField(
               autofocus: false,
@@ -104,7 +103,7 @@ Widget build(BuildContext context) {
                       toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.BOTTOM,
                       timeInSecForIosWeb: 2,
-                      backgroundColor: Color.fromRGBO(18, 18, 18, 1),
+                      backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
                       textColor: Colors.white,
                       fontSize: 16.0,
                     );
@@ -119,7 +118,7 @@ Widget build(BuildContext context) {
                     color: Colors.amber.withOpacity(0.6),
                   ),
                 ),
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.search,
                   color: Colors.amber,
                 ),
@@ -129,7 +128,7 @@ Widget build(BuildContext context) {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
 
@@ -139,12 +138,12 @@ Widget build(BuildContext context) {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       return Container(
-                        color: Color.fromARGB(255, 198, 173, 101),
+                        color: Color.fromARGB(255, 107, 128, 105),
                         height: 400,
                         child: ListView.builder(
                           itemCount: searchresult.length,
                           scrollDirection: Axis.vertical,
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
@@ -159,10 +158,10 @@ Widget build(BuildContext context) {
                                 );
                               },
                               child: Container(
-                                margin: EdgeInsets.only(top: 4, bottom: 4),
+                                margin: const EdgeInsets.only(top: 4, bottom: 4),
                                 height: 180,
                                 width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Color.fromRGBO(96, 60, 60, 1),
                                   borderRadius: BorderRadius.all(Radius.circular(10)),
                                 ),
@@ -171,7 +170,7 @@ Widget build(BuildContext context) {
                                     Container(
                                       width: MediaQuery.of(context).size.width * 0.4,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        borderRadius: const BorderRadius.all(Radius.circular(10)),
                                         image: DecorationImage(
 
                                           image: NetworkImage(
@@ -181,7 +180,7 @@ Widget build(BuildContext context) {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 20,
                                     ),
                                     Padding(
@@ -203,22 +202,22 @@ Widget build(BuildContext context) {
                                                 children: [
 
                                                   Container(
-                                                    padding: EdgeInsets.all(5),
+                                                    padding: const EdgeInsets.all(5),
                                                     height: 30,
                                                     decoration: BoxDecoration(
                                                       color: Colors.amber.withOpacity(0.2),
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                                                      borderRadius: const BorderRadius.all(Radius.circular(6)),
                                                     ),
                                                     child: Center(
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
-                                                          Icon(
+                                                          const Icon(
                                                             Icons.star,
                                                             color: Colors.amber,
                                                             size: 20,
                                                           ),
-                                                          SizedBox(
+                                                          const SizedBox(
                                                             width: 5,
                                                           ),
                                                           ratingtext('${searchresult[index]['vote_average']}'),
@@ -226,27 +225,27 @@ Widget build(BuildContext context) {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 10,
                                                   ),
 
                                                   Container(
-                                                    padding: EdgeInsets.all(5),
+                                                    padding: const EdgeInsets.all(5),
                                                     height: 30,
                                                     decoration: BoxDecoration(
                                                       color: Colors.amber.withOpacity(0.2),
-                                                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                                                      borderRadius: const BorderRadius.all(Radius.circular(8)),
                                                     ),
                                                     child: Center(
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
-                                                          Icon(
+                                                          const Icon(
                                                             Icons.people_outline_sharp,
                                                             color: Colors.amber,
                                                             size: 20,
                                                           ),
-                                                          SizedBox(
+                                                          const SizedBox(
                                                             width: 5,
                                                           ),
                                                           ratingtext('${searchresult[index]['popularity']}'),
@@ -263,7 +262,7 @@ Widget build(BuildContext context) {
                                             Container(
                                               width: MediaQuery.of(context).size.width * 0.4,
                                               height: 85,
-                                              child: Text(
+                                              child: const Text(
                                                 textAlign: TextAlign.left,
                                                 //' ${searchresult[index]['overview']}',
                                                 'aaaa',
@@ -282,7 +281,7 @@ Widget build(BuildContext context) {
                         ),
                       );
                     } else {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(
                           color: Colors.amber,
                         ),
@@ -297,13 +296,18 @@ Widget build(BuildContext context) {
   );
 }
 }
-
 */
+
+
+/*
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Constants.dart';
+import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Screens/checker.dart';
 import 'package:flutter_application_1/repttext.dart';
+import 'package:flutter_application_1/widgets/movies.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application_1/API/api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -316,7 +320,7 @@ class searchbarfun extends StatefulWidget {
 }
 
 class _searchbarfunState extends State<searchbarfun> {
-  List<Map<String, dynamic>> searchresult = [];
+  //List<Map<String, dynamic>> searchresult = [];
 
   Future<List> searchlistfunction(val) async {
     List<Map<String, dynamic>> searchresult = [];
@@ -327,8 +331,8 @@ class _searchbarfunState extends State<searchbarfun> {
 
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
-      List<dynamic> movies = data['results'] ?? [];
-      searchresult.addAll(movies.map((json) => Movies.fromJson(json)).toList());
+      List<dynamic> ListMovies = data['results'] ?? [];
+      searchresult.addAll(ListMovies.map((json) => ListMovies.fromJson(json)).toList());
     } else {
       throw Exception('Failed to search movies');
     }
@@ -571,3 +575,4 @@ class _searchbarfunState extends State<searchbarfun> {
     );
   }
 }
+*/
