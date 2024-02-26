@@ -1,5 +1,4 @@
-/*import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/movie_details.dart';
 
 class descriptioncheckui extends StatefulWidget {
@@ -14,12 +13,9 @@ class descriptioncheckui extends StatefulWidget {
 class _descriptioncheckuiState extends State<descriptioncheckui> {
   checktype() {
     if (widget.newtype.toString() == 'movie') {
-      return MovieDetailsScreen(
-        movie: snapshot.data[itemIndex], 
-        id: 0,
+      return MovieDetails(
         id: widget.newid,
       );
-      
     } else {
       return errorui(context);
     }
@@ -42,4 +38,3 @@ Widget errorui(context) {
     ),
   );
 }
-*/
