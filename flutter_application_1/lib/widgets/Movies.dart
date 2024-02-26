@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Constants.dart';
+import 'package:flutter_application_1/Screens/checker.dart';
 import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
 
 class Movies extends StatelessWidget {
@@ -33,8 +34,11 @@ class Movies extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => MovieDetailsScreen(
-                      movie: snapshot.data[index], id: 0,
-                    ),
+                      movie: snapshot.data[index],
+                     id: 0,
+
+                    ),                    
+                  
                  ),
                 );
               },
@@ -81,9 +85,6 @@ class Movies extends StatelessWidget {
       ),
     );
   }
-
-  static fromJson(json) {}
-
 }
 
-                  
+                 

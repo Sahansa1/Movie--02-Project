@@ -33,7 +33,7 @@ final AsyncSnapshot snapshot;
                 context,
                 MaterialPageRoute(
                   builder: (context) => MovieDetailsScreen(
-                    movie: snapshot.data[itemIndex], id: 0,
+                    movie: snapshot.data[itemIndex],
                   ),
                 ),
               );
