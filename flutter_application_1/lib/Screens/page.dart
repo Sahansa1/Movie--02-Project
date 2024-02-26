@@ -5,7 +5,6 @@ import 'package:flutter_application_1/Models/list_series.dart';
 import 'package:flutter_application_1/widgets/movies.dart';
 import 'package:flutter_application_1/widgets/navigation_drawer.dart';
 import 'package:flutter_application_1/widgets/searchbar3.dart';
-import 'package:flutter_application_1/widgets/searchbarfunc.dart';
 import 'package:flutter_application_1/widgets/series.dart';
 import 'package:flutter_application_1/widgets/trending_movies.dart';
 import 'package:flutter_application_1/widgets/trending_series.dart';
@@ -148,13 +147,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 16),
-                            const Text('Trending Series',),
+                            const Text('Trendingies',),
                             const SizedBox(height: 16),
                             FutureBuilder(
                               future: trendingSeries,
                               builder: (context, snapshot) {
                                 if (snapshot.hasError) {
                                   return Center(
+                                    //child: Text('serrrror'),
                                     child: Text(snapshot.error.toString()),
                                   );
                                 } else if (snapshot.hasData) {
@@ -165,6 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   );
                                 }
                               },
+                            
                             ),
                             const SizedBox(height: 16),
                             const Text(
@@ -198,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 builder: (context, snapshot) {
                                   if (snapshot.hasError) {
                                     return Center(
-                                      child: Text(snapshot.error.toString()),
+                                      child: Text('snapshot.error.toString()'),
                                     );
                                   } else if (snapshot.hasData) {
                                     return Series(snapshot: snapshot);

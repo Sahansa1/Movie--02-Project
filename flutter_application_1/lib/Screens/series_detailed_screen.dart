@@ -3,9 +3,10 @@ import 'package:flutter_application_1/Constants.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
 
 class SeriesDetailsScreen extends StatelessWidget {
+
   const SeriesDetailsScreen({
     super.key, 
-    required this.series
+    required this.series, 
     });
 
   final ListSeries series;
@@ -23,7 +24,7 @@ class SeriesDetailsScreen extends StatelessWidget {
           flexibleSpace: FlexibleSpaceBar(
             title:Text(series.name),
             background: Image.network(
-              '${Constants.imagePath}${series.backdrop_path}',
+              '${Constants.imagePath}${series.poster_path}',
               filterQuality: FilterQuality.high,
               fit: BoxFit.cover,
             ),

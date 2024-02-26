@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_1/Constants.dart';
-
 import 'package:flutter_application_1/Screens/series_detailed_screen.dart';
 
 class TrendingSeries extends StatelessWidget {
   const TrendingSeries({
-    super.key, required this.snapshot,
+   super.key, 
+   required this.snapshot,
   });
 
 final AsyncSnapshot snapshot;  
@@ -34,7 +34,7 @@ final AsyncSnapshot snapshot;
                 context,
                 MaterialPageRoute(
                   builder: (context) => SeriesDetailsScreen(
-                    series: snapshot.data[itemIndex],
+                    series: snapshot.data[itemIndex], 
                   ),
                 ),
               );
@@ -53,9 +53,7 @@ final AsyncSnapshot snapshot;
             ),
           );
         }
-        
       ),
-        
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter_application_1/Models/list_movies.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   final int id;
-   MovieDetailsScreen({
+  const MovieDetailsScreen({
     super.key, 
     required this.movie, 
     required this.id,

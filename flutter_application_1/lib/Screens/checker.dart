@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/widgets/movie_details.dart';
 
 class descriptioncheckui extends StatefulWidget {
@@ -12,13 +13,22 @@ class descriptioncheckui extends StatefulWidget {
 
 class _descriptioncheckuiState extends State<descriptioncheckui> {
   checktype() {
-    if (widget.newtype.toString() == 'movie') {
-      return MovieDetails(
-        id: widget.newid,
+    
+      return ListMovies(
+        id: widget.newid, 
+        title: 'title',
+         backdrop_path: '', 
+        original_title: '', 
+        vote_average: 0,
+         overview: '', 
+        poster_path: '',
+         popularity: 0, 
+         release_date: '',
+          movieId: 0,
       );
-    } else {
-      return errorui(context);
-    }
+    //} else {
+      //return errorui(context);
+    
     
   }
 

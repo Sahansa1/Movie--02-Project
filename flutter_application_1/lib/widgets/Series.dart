@@ -4,7 +4,8 @@ import 'package:flutter_application_1/Screens/series_detailed_screen.dart';
 
 class Series extends StatelessWidget {
   const Series({
-    super.key, required this.snapshot,
+    super.key, 
+    required this.snapshot,
   });
 
   final AsyncSnapshot snapshot; 

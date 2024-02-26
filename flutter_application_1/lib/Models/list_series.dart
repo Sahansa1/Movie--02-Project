@@ -1,6 +1,6 @@
 class ListSeries{
   String name ;
-  String backdrop_path;
+ // String backdrop_path;
   String original_name;
   String overview;
   String poster_path;
@@ -12,7 +12,7 @@ class ListSeries{
 
   ListSeries({
     required this.name,
-    required this.backdrop_path,
+    //required this.backdrop_path,
     required this.original_name,
     required this.overview,
     required this.poster_path,
@@ -27,7 +27,7 @@ class ListSeries{
   factory ListSeries.fromJson(Map<String,dynamic> json){
     return ListSeries(
       name: json["name"] ,
-      backdrop_path: json["backdrop_path"],
+      //backdrop_path: json["backdrop_path"],
       original_name: json["original_name"], 
       overview: json["overview"], 
       poster_path: json["poster_path"], 

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Screens/checker.dart';
+import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
 import 'package:flutter_application_1/repttext.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application_1/Constants.dart';
@@ -55,20 +56,7 @@ Future<List<ListMovies>> searchlistfunction(String query) async {
     return searchResults;
   } else {
     return [];
-  }
-
-    /*if (response.statusCode == 200) {
-      Map<String, dynamic> data = jsonDecode(response.body);
-      List<dynamic> movies = data['results'] ?? [];
-      searchResults.addAll(movies.map((json) => ListMovies.fromJson(json)).toList());
-    } else {
-      throw Exception('Failed to search movies');
-    }
-    print (searchResults);
-    return searchResults;*/
-
-    
-    
+  }   
 }
 
 final TextEditingController searchtext = TextEditingController();
@@ -133,15 +121,15 @@ Widget build(BuildContext context) {
                   },
                   icon: Icon(
                     Icons.arrow_back_ios_rounded,
-                    color: Colors.amber.withOpacity(0.6),
+                    color: const Color.fromARGB(255, 139, 139, 138).withOpacity(0.6),
                   ),
                 ),
                 prefixIcon: const Icon(
                   Icons.search,
-                  color: Colors.amber,
+                  color: Color.fromARGB(255, 121, 121, 121),
                 ),
                 hintText: 'Search',
-                hintStyle: const TextStyle(color: Colors.amber),
+                hintStyle: const TextStyle(color: Color.fromARGB(255, 74, 74, 72)),
                 border: InputBorder.none,
               ),
             ),
@@ -156,7 +144,7 @@ Widget build(BuildContext context) {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return Container(
-                color: Color.fromARGB(255, 107, 128, 105),
+                color: Color.fromARGB(255, 34, 34, 34),
                 height: 400,
                 child: Column(
                   children: [
@@ -169,14 +157,15 @@ Widget build(BuildContext context) {
                         scrollDirection: Axis.vertical,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
+                          
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => descriptioncheckui(
-                                    searchresult[index]['id'],
-                                    searchresult[index]['media_type'],
+                                  builder: (context) => MovieDetailsScreen(
+                                    movie: snapshot.data![index],
+                                    id: 0,
                                   ),
                                 ),
                               );
@@ -186,7 +175,7 @@ Widget build(BuildContext context) {
                               height: 180,
                               width: MediaQuery.of(context).size.width,
                               decoration: const BoxDecoration(
-                                color: Color.fromRGBO(96, 60, 60, 1),
+                                color: Color.fromRGBO(131, 129, 129, 1),
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
                               ),
                               child: Row(
@@ -215,7 +204,7 @@ Widget build(BuildContext context) {
                                           Container(
                                             alignment: Alignment.topCenter,
                                             child: tittletext(
-                                              '${searchresult[index]['media_type']}',
+                                              '${searchresult[index]['title']}',
                                             ),
                                           ),
                                           Container(
@@ -279,8 +268,7 @@ Widget build(BuildContext context) {
                                             width: MediaQuery.of(context).size.width * 0.4,
                                             height: 85,
                                             child: Text(
-                                              //' ${searchresult[index]['overview']}',
-                                              'aaaa',
+                                              ' ${searchresult[index]['overview']}',
                                               style: TextStyle(fontSize: 12, color: Colors.white),
                                             ),
                                           ),

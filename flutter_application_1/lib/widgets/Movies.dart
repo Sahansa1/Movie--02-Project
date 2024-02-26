@@ -4,7 +4,8 @@ import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
 
 class Movies extends StatelessWidget {
   const Movies({
-    super.key, required this.snapshot,
+    super.key, 
+    required this.snapshot,
   });
 
 
