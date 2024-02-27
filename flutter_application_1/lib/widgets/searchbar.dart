@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
-import 'package:flutter_application_1/Screens/abc.dart';
-import 'package:flutter_application_1/Screens/checker.dart';
-//import 'package:flutter_application_1/Screens/checker.dart';
 import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
 import 'package:flutter_application_1/repttext.dart';
 import 'package:http/http.dart' as http;
@@ -40,7 +37,7 @@ Future<List<ListMovies>> searchlistfunction(String query) async {
             searchjson[i]['original_title'] != null &&
             searchjson[i]['vote_average'] != null 
             //searchjson[i]['media_type'] != null
-            
+
             ) {
           searchresult.add({
             'id': searchjson[i]['id'],

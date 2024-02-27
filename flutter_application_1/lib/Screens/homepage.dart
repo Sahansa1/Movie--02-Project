@@ -4,7 +4,7 @@ import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
 import 'package:flutter_application_1/widgets/movies.dart';
 import 'package:flutter_application_1/widgets/navigation_drawer.dart';
-import 'package:flutter_application_1/widgets/searchbar3.dart';
+import 'package:flutter_application_1/widgets/searchbar.dart';
 import 'package:flutter_application_1/widgets/series.dart';
 import 'package:flutter_application_1/widgets/trending_movies.dart';
 import 'package:flutter_application_1/widgets/trending_series.dart';
