@@ -34,15 +34,22 @@ Future<List<ListMovies>> searchlistfunction(String query) async {
       for (var i = 0; i < searchjson.length; i++) {
         if (searchjson[i]['id'] != null &&
             searchjson[i]['poster_path'] != null &&
+            searchjson[i]['backdrop_path'] != null &&
+            searchjson[i]['release_date'] != null &&
             searchjson[i]['title'] != null &&
+            searchjson[i]['original_title'] != null &&
             searchjson[i]['vote_average'] != null 
             //searchjson[i]['media_type'] != null
+            
             ) {
           searchresult.add({
             'id': searchjson[i]['id'],
             'poster_path': searchjson[i]['poster_path'],
             'vote_average': searchjson[i]['vote_average'],
+            'backdrop_path': searchjson[i]['backdrop_path'],
+            'release_date': searchjson[i]['release_date'],
             'title':searchjson[i]['title'],
+            'original_title':searchjson[i]['original_title'],
             //'media_type': searchjson[i]['media_type'],
             'popularity': searchjson[i]['popularity'],
             'overview': searchjson[i]['overview'],
@@ -64,6 +71,7 @@ Future<List<ListMovies>> searchlistfunction(String query) async {
 final TextEditingController searchtext = TextEditingController();
   bool showlist = false;
   String query1 ='';
+
 
 @override
 Widget build(BuildContext context) {
@@ -161,28 +169,29 @@ Widget build(BuildContext context) {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
+ 
+                              ListMovies movie = ListMovies(
+                                id: searchresult[index]['id'],
+                                title: searchresult[index]['title'],
+                                backdrop_path: searchresult[index]['backdrop_path'], 
+                                original_title: '', 
+                                overview: searchresult[index]['overview'],
+                                poster_path: searchresult[index]['poster_path'],
+                                popularity: searchresult[index]['popularity'].toDouble(),
+                                release_date: searchresult[index]['release_date'], 
+                                vote_average: searchresult[index]['vote_average'].toDouble(),
+                                movieId: searchresult[index]['id'], 
+                              );
+
+                              // Navigate to the movie detailed screen while passing the ListMovies object
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                 /* builder: (context) => MovieDetailsScreen(
-                                    movie:snapshot.data![index],
-                                    id: 0,
-                                  ),*/
-                                   /*  builder: (context) => descriptioncheckui(
-                                        searchresult[index]['id'],
-                                         searchresult[index]['media_type'],
-                                      )*/
-
-                                     builder: (context) =>  CustomListTile(
-                                      height: 200,
-
-                                      title: Text('yayy it works'),
-
-                                      
-                                      )
-                                )
+                                  builder: (context) => MovieDetailsScreen(movie: movie,id:searchresult[index]['id']),
+                                ),
                               );
                             },
+
                             child: Container(
                               margin: const EdgeInsets.only(top: 4, bottom: 4),
                               height: 180,
