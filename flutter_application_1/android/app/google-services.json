@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "649394853723",
+    "project_id": "bingewatch-1fd6e",
+    "storage_bucket": "bingewatch-1fd6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649394853723:android:1cd1231a1ac513ffb72c7e",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl3g_BrRYe6JzXSm4fUK36yM15cbejZzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
