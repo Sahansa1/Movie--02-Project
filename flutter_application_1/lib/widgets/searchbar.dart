@@ -36,8 +36,6 @@ Future<List<ListMovies>> searchlistfunction(String query) async {
             searchjson[i]['title'] != null &&
             searchjson[i]['original_title'] != null &&
             searchjson[i]['vote_average'] != null 
-            //searchjson[i]['media_type'] != null
-
             ) {
           searchresult.add({
             'id': searchjson[i]['id'],
@@ -47,7 +45,6 @@ Future<List<ListMovies>> searchlistfunction(String query) async {
             'release_date': searchjson[i]['release_date'],
             'title':searchjson[i]['title'],
             'original_title':searchjson[i]['original_title'],
-            //'media_type': searchjson[i]['media_type'],
             'popularity': searchjson[i]['popularity'],
             'overview': searchjson[i]['overview'],
           });
@@ -56,7 +53,7 @@ Future<List<ListMovies>> searchlistfunction(String query) async {
           searchresult.removeRange(20, searchresult.length);
         }
       } else {
-        print('null value rr');
+        print('null value is there');
       }
     }
     return searchResults;
