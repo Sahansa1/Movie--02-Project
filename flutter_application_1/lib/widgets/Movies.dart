@@ -8,7 +8,6 @@ class Movies extends StatelessWidget {
     required this.snapshot,
   });
 
-
   final AsyncSnapshot snapshot; 
 
   @override

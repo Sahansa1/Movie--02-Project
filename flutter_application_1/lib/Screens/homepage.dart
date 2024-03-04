@@ -4,6 +4,8 @@ import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
 import 'package:flutter_application_1/widgets/movies.dart';
 import 'package:flutter_application_1/widgets/navigation_drawer.dart';
+import 'package:flutter_application_1/widgets/search_by_actor.dart';
+//import 'package:flutter_application_1/widgets/search_by_actor.dart';
 import 'package:flutter_application_1/widgets/searchbar.dart';
 import 'package:flutter_application_1/widgets/series.dart';
 import 'package:flutter_application_1/widgets/trending_movies.dart';
@@ -93,7 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             
                             ),
-                            searchbarfun(),
+                            const searchbarfun(),
+                            const searchbarfun2(),
                             const SizedBox(height: 16),
                             const Text(
                               "Top rated movies",
@@ -147,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 16),
-                            const Text('Trendingies',),
+                            const Text('Trending Series',),
                             const SizedBox(height: 16),
                             FutureBuilder(
                               future: trendingSeries,
