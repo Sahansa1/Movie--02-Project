@@ -18,7 +18,8 @@ class ListMovies{
     required this.poster_path,
     required this.popularity,
     required this.release_date,
-    required this.vote_average, required int movieId,
+    required this.vote_average, 
+    required int movieId,
   });
 
   factory ListMovies.fromJson(Map<String,dynamic> json){

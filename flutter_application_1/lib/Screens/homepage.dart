@@ -22,9 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<ListMovies>> trendingMovies;
   late Future<List<ListMovies>> topratedMovies;
   late Future<List<ListMovies>> upcomingMovies;
+  late Future<List<ListMovies>> childrenFriendlyMovies;
+  late Future<List<ListMovies>> highestGrossingMovies;
   late Future<List<ListSeries>> trendingSeries;
   late Future<List<ListSeries>> topRatedSeries;
   late Future<List<ListSeries>> upComingSeries;
+  late Future<List<ListSeries>> childrenFriendlySeries;
+  late Future<List<ListSeries>> highestGrossingSeries;
 
   @override
   void initState() {
@@ -32,9 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
     trendingMovies = API().getTrendingMovies();
     topratedMovies = API().getTopRatedMovies();
     upcomingMovies = API().getUpComingMovies();
+    childrenFriendlyMovies = API().getChildrenFriendlyMovies();
+    highestGrossingMovies = API().getHighestGrossingMovies();
     trendingSeries = API().getTrendingSeries();
     topRatedSeries = API().getTopRatedSeries();
     upComingSeries = API().getUpComingSeries();
+    childrenFriendlySeries = API().getChildrenFriendlySeries();
+    highestGrossingSeries= API().getHighestGrossingSeries();
   }
 
   @override
@@ -137,6 +145,46 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 }
                               ),
+                            ),
+                            const Text(
+                              "Children Friendly movies",
+                            ),
+                            const SizedBox(height: 5),
+                            SizedBox(
+                              child: FutureBuilder(
+                                future: childrenFriendlyMovies,
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                      child: Text(snapshot.error.toString()),
+                                    );
+                                  } else if (snapshot.hasData) {
+                                    return Movies(snapshot: snapshot);
+                                  } else {
+                                    return const Center(child: CircularProgressIndicator());
+                                  }
+                                }
+                              ),
+                            ),
+                            const Text(
+                              "Highest grossing movies",
+                            ),
+                            const SizedBox(height: 5),
+                            SizedBox(
+                              child: FutureBuilder(
+                                future: highestGrossingMovies,
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                      child: Text(snapshot.error.toString()),
+                                    );
+                                  } else if (snapshot.hasData) {
+                                    return Movies(snapshot: snapshot);
+                                  } else {
+                                    return const Center(child: CircularProgressIndicator());
+                                  }
+                                }
+                              ),
                             )
                           ],
                         ),
@@ -211,7 +259,49 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 }
                               ),
+                            ),
+                            const SizedBox(height: 16),
+                            const Text(
+                              "Children Friendly Series",
+                            ),
+                            const SizedBox(height: 5),
+                            SizedBox(
+                              child: FutureBuilder(
+                                future: childrenFriendlySeries,
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                      child: Text(snapshot.error.toString()),
+                                    );
+                                  } else if (snapshot.hasData) {
+                                    return Series(snapshot: snapshot);
+                                  } else {
+                                    return const Center(child: CircularProgressIndicator());
+                                  }
+                                }
+                              ),
+                            ),
+                            const Text(
+                              "Highest Grossing Series",
+                            ),
+                            const SizedBox(height: 5),
+                            SizedBox(
+                              child: FutureBuilder(
+                                future: highestGrossingSeries,
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                      child: Text(snapshot.error.toString()),
+                                    );
+                                  } else if (snapshot.hasData) {
+                                    return Series(snapshot: snapshot);
+                                  } else {
+                                    return const Center(child: CircularProgressIndicator());
+                                  }
+                                }
+                              ),
                             )
+                            
                           ],
                         ),
                       ),

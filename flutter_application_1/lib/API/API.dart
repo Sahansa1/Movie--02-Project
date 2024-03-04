@@ -10,10 +10,16 @@ class API {
     static const trendingMovieURL = 'https://api.themoviedb.org/3/trending/movie/day?api_key=${Constants.APIKey}';
     static const topRatedMovieURL = 'https://api.themoviedb.org/3/movie/top_rated?api_key=${Constants.APIKey}';
     static const upComingMovieURL = 'https://api.themoviedb.org/3/movie/upcoming?api_key=${Constants.APIKey}';
+    static const childrenFriendlyMoviesURL = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&sort_by=revenue.desc&adult=false&with_genres=16'; 
+    static const highestGrossingMoviesURL = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&sort_by=revenue.desc';
     static const trendingSeriesURL ='https://api.themoviedb.org/3/trending/tv/day?api_key=${Constants.APIKey}';
     static const topRatedSeriesURL ='https://api.themoviedb.org/3/tv/top_rated?api_key=${Constants.APIKey}';
-    static const upComingSeriesURL ='https://api.themoviedb.org/3/tv/top_rated?api_key=${Constants.APIKey}';
+    static const upComingSeriesURL ='https://api.themoviedb.org/3/tv/on_the_air?api_key=${Constants.APIKey}';
     static const searchMoviesURL = 'https://api.themoviedb.org/3/search/movie?api_key=${Constants.APIKey}';
+    static const highestGrossingSeriesURL = 'https://api.themoviedb.org/3/discover/tv?api_key=${Constants.APIKey}&sort_by=revenue.desc';
+    static const childrenFriendlySeriesURL = 'https://api.themoviedb.org/3/discover/tv?api_key=${Constants.APIKey}&sort_by=revenue.desc&adult=false&with_genres=16'; 
+  
+
 
   Future<List<ListMovies>> getTrendingMovies() async {
     final response = await http.get(Uri.parse(trendingMovieURL));
@@ -99,4 +105,55 @@ class API {
       throw Exception('Failed to search movies');
     }
   }
+
+
+  Future<List<ListMovies>> getChildrenFriendlyMovies() async {
+    final response = await http.get(Uri.parse(childrenFriendlyMoviesURL));
+    
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List<dynamic>;
+      List<ListMovies> childrenFriendlyMovies = decodedData.map((item) => ListMovies.fromJson(item)).toList();
+      return childrenFriendlyMovies;
+    } else {
+      throw Exception('Failed to load children friendly movies');
+    }
+  }  
+
+  Future<List<ListSeries>> getChildrenFriendlySeries() async {
+    final response = await http.get(Uri.parse(childrenFriendlySeriesURL));
+    
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List<dynamic>;
+      List<ListSeries> childrenFriendlySeries = decodedData.map((item) => ListSeries.fromJson(item)).toList();
+      return childrenFriendlySeries;
+    } else {
+      throw Exception('Failed to load children friendly series');
+    }
+  }  
+
+Future<List<ListMovies>> getHighestGrossingMovies() async {
+    final response = await http.get(Uri.parse(highestGrossingMoviesURL));
+    
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List<dynamic>;
+      List<ListMovies> highestGrossingMovies = decodedData.map((item) => ListMovies.fromJson(item)).toList();
+      return highestGrossingMovies;
+    } else {
+      throw Exception('Failed to load highest grossings movies');
+    }
+  }  
+
+Future<List<ListSeries>> getHighestGrossingSeries() async {
+    final response = await http.get(Uri.parse(highestGrossingSeriesURL));
+    
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List<dynamic>;
+      List<ListSeries> highestGrossingSeries = decodedData.map((item) => ListSeries.fromJson(item)).toList();
+      return highestGrossingSeries;
+    } else {
+      throw Exception('Failed to load highest grossings series');
+    }
+  }  
+  
+  
 }
