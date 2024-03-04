@@ -2,6 +2,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/list_actors.dart';
+import 'package:flutter_application_1/Screens/actors_detailed_screen.dart';
+
 import 'package:flutter_application_1/repttext.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application_1/Constants.dart';
@@ -161,8 +163,27 @@ class _searchbarfun2State extends State<searchbarfun2> {
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) {
                               return GestureDetector(
+                                /*onTap: () {
+                                  ListActors actor = ListActors(
+                                    id: searchresult[index]['id'],
+                                    name: searchresult[index]['name'],
+                                    original_name: searchresult[index]['original_name'],
+                                    known_for_department: searchresult[index]['known_for_department'],
+                                    profile_path: searchresult[index]['profile_path'],
+                                    popularity: searchresult[index]['popularity'].toDouble(),
+                                    gender: searchresult[index]['gender'],
+                                    known_for: List<Map<String, dynamic>>.from(searchresult[index]['known_for']),
+                                  );
+*/
                                 onTap: () {
-                                  // Handle actor tap
+                                  ListActors actor = searchresult[index];
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ActorsDetailsScreen(id: actor.id, actor: actor,),
+                                    ),
+                                  );
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.only(top: 4, bottom: 4),
@@ -182,7 +203,7 @@ class _searchbarfun2State extends State<searchbarfun2> {
                                             image: NetworkImage(
                                               'https://image.tmdb.org/t/p/w500${searchresult[index].profile_path}',
                                             ),
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.scaleDown,
                                           ),
                                         ),
                                       ),
@@ -201,6 +222,7 @@ class _searchbarfun2State extends State<searchbarfun2> {
                                                   '${searchresult[index].name}',
                                                 ),
                                               ),
+                                              
                                               Container(
                                                 width: MediaQuery.of(context).size.width * 0.4,
                                                 height: 85,
