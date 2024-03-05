@@ -15,11 +15,9 @@ class API {
     static const trendingSeriesURL ='https://api.themoviedb.org/3/trending/tv/day?api_key=${Constants.APIKey}';
     static const topRatedSeriesURL ='https://api.themoviedb.org/3/tv/top_rated?api_key=${Constants.APIKey}';
     static const upComingSeriesURL ='https://api.themoviedb.org/3/tv/on_the_air?api_key=${Constants.APIKey}';
-    static const searchMoviesURL = 'https://api.themoviedb.org/3/search/movie?api_key=${Constants.APIKey}';
+   // static const searchMoviesURL = 'https://api.themoviedb.org/3/search/movie?api_key=${Constants.APIKey}';
     static const highestGrossingSeriesURL = 'https://api.themoviedb.org/3/discover/tv?api_key=${Constants.APIKey}&sort_by=revenue.desc';
     static const childrenFriendlySeriesURL = 'https://api.themoviedb.org/3/discover/tv?api_key=${Constants.APIKey}&sort_by=revenue.desc&adult=false&with_genres=16'; 
-  
-
 
   Future<List<ListMovies>> getTrendingMovies() async {
     final response = await http.get(Uri.parse(trendingMovieURL));
@@ -92,7 +90,7 @@ class API {
     }
   }
 
-  Future<List<ListMovies>> getSearchedMovies(String searchTerm) async {
+  /*Future<List<ListMovies>> getSearchedMovies(String searchTerm) async {
     final queryParameters = {'query': searchTerm};
     final uri = Uri.parse(searchMoviesURL).replace(queryParameters: queryParameters);
     final response = await http.get(uri);
@@ -104,7 +102,7 @@ class API {
     } else {
       throw Exception('Failed to search movies');
     }
-  }
+  }*/
 
 
   Future<List<ListMovies>> getChildrenFriendlyMovies() async {
