@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<ListSeries>> upComingSeries;
   late Future<List<ListSeries>> childrenFriendlySeries;
   late Future<List<ListSeries>> highestGrossingSeries;
+  bool showSearchBar1 = true;
 
   @override
   void initState() {
@@ -103,8 +104,31 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             
                             ),
-                            const searchbarfun(),
-                            const searchbarfun2(),
+                            Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      showSearchBar1 = true;
+                                    });
+                                  },
+                                  child: Text('Title'),
+                                ),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      showSearchBar1 = false;
+                                    });
+                                  },
+                                  child: Text('Actor'),
+                                ),
+                              ],
+                            ),
+                            if (showSearchBar1)
+                                searchbarfun(),
+                            if (!showSearchBar1)
+                                searchbarfun2(),
                             const SizedBox(height: 16),
                             const Text(
                               "Top rated movies",
