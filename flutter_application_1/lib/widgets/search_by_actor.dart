@@ -181,9 +181,10 @@ class _searchbarfun2State extends State<searchbarfun2> {
                                     borderRadius: BorderRadius.all(Radius.circular(10)),
                                   ),
                                   child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start, // Align children to the start
                                     children: [
                                       Container(
-                                        width: MediaQuery.of(context).size.width * 0.4,
+                                        width: 120,
                                         decoration: BoxDecoration(
                                           borderRadius: const BorderRadius.all(Radius.circular(10)),
                                           image: DecorationImage(
@@ -197,28 +198,31 @@ class _searchbarfun2State extends State<searchbarfun2> {
                                       const SizedBox(
                                         width: 20,
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                alignment: Alignment.topCenter,
-                                                child: Text(
-                                                  '${searchresult[index].name}',
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+                                              children: [
+                                                Container(
+                                                  alignment: Alignment.topCenter,
+                                                  child: Text(
+                                                    '${searchresult[index].name}',
+                                                  ),
                                                 ),
-                                              ),
-                                              
-                                              Container(
-                                                width: MediaQuery.of(context).size.width * 0.4,
-                                                height: 85,
-                                                child: Text(
-                                                  'Known for: ${searchresult[index].known_for.map((e) => e['title']).join(", ")}',
-                                                  style: TextStyle(fontSize: 12, color: Colors.white),
+                                                
+                                                Container(
+                                                  width: MediaQuery.of(context).size.width * 0.4,
+                                                  height: 85,
+                                                  child: Text(
+                                                    'Known for: ${searchresult[index].known_for.map((e) => e['title']).join(", ")}',
+                                                    style: TextStyle(fontSize: 12, color: Colors.white),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
