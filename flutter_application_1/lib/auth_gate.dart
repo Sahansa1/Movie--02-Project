@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/home.dart';
 import 'package:flutter_application_1/Screens/homepage.dart';
+
 
 class AuthGate extends StatelessWidget {
  const AuthGate({super.key});
@@ -29,8 +31,8 @@ class AuthGate extends StatelessWidget {
              return Padding(
                padding: const EdgeInsets.symmetric(vertical: 8.0),
                child: action == AuthAction.signIn
-                   ? const Text('Welcome to FlutterFire, please sign in!')
-                   : const Text('Welcome to Flutterfire, please sign up!'),
+                   ? const Text('Welcome to BingeWatch, please sign in!')
+                   : const Text('Welcome to BingeWatch, please sign up!'),
              );
            },
            footerBuilder: (context, action) {
@@ -47,7 +49,7 @@ class AuthGate extends StatelessWidget {
                padding: const EdgeInsets.all(20),
                child: AspectRatio(
                  aspectRatio: 1,
-                 child: Image.asset('flutterfire_300x.png'),
+                 child: Image.asset('assets/Login.jpg'),
                ),
              );
            },

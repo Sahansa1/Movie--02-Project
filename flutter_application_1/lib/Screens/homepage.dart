@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/API/api.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
+import 'package:flutter_application_1/Screens/show_all_movies.dart';
 import 'package:flutter_application_1/widgets/movies.dart';
 import 'package:flutter_application_1/widgets/navigation_drawer.dart';
 import 'package:flutter_application_1/widgets/search_by_actor.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_application_1/widgets/trending_series.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -45,6 +45,17 @@ class _HomeScreenState extends State<HomeScreen> {
     childrenFriendlySeries = API().getChildrenFriendlySeries();
     highestGrossingSeries= API().getHighestGrossingSeries();
   }
+
+ 
+  
+  void _navigateToShowAllMoviesScreen(List<ListMovies> allmovies, String title) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => ShowAllMoviesScreen(movies: allmovies, title: title),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +113,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   );
                                 }
                               },
-                            
                             ),
                             Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -129,9 +139,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                 searchbarfun(),
                             if (!showSearchBar1)
                                 searchbarfun2(),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 2),
                             const Text(
                               "Top rated movies",
+                            ),
+                            Positioned(
+                              top: 10,
+                              right: 50,
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  _navigateToShowAllMoviesScreen( await topratedMovies, 'Top Rated Movies');
+                                },
+                                child: Text('See more'),
+                              ),
                             ),
                             const SizedBox(height: 5),
                             SizedBox(
@@ -150,8 +170,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                             ),  
+
                             const Text(
                               "Upcoming movies",
+                            ),
+                            const SizedBox(height: 5),
+                            Positioned(
+                              top: 10,
+                              right: 50,
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  _navigateToShowAllMoviesScreen( await upcomingMovies,'Up Coming Movies');
+                                },
+                                child: Text('See more'),
+                              ),
                             ),
                             const SizedBox(height: 5),
                             SizedBox(
@@ -174,6 +206,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               "Children Friendly movies",
                             ),
                             const SizedBox(height: 5),
+                            Positioned(
+                              top: 10,
+                              right: 50,
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  _navigateToShowAllMoviesScreen( await childrenFriendlyMovies,'Children Friendly movies');
+                                },
+                                child: Text('See more'),
+                              ),
+                            ),
                             SizedBox(
                               child: FutureBuilder(
                                 future: childrenFriendlyMovies,
@@ -194,6 +236,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               "Highest grossing movies",
                             ),
                             const SizedBox(height: 5),
+                            Positioned(
+                              top: 10,
+                              right: 50,
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  _navigateToShowAllMoviesScreen( await highestGrossingMovies,'Highest grossing movies');
+                                },
+                                child: Text('See more'),
+                              ),
+                            ),
                             SizedBox(
                               child: FutureBuilder(
                                 future: highestGrossingMovies,
@@ -239,8 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: CircularProgressIndicator(),
                                   );
                                 }
-                              },
-                            
+                              }, 
                             ),
                             const SizedBox(height: 16),
                             const Text(
