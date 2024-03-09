@@ -55,6 +55,7 @@ Future<void> saveMovieDetailsToFirestore(String userId, ListMovies movie) async 
       'release_date': movie.release_date,
       'vote_average': movie.vote_average,
       'popularity': movie.popularity,
+      'poster_path': movie.poster_path,
       // Add more fields as per your requirement
     });
   } catch (e) {

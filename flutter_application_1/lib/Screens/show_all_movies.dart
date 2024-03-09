@@ -17,8 +17,8 @@ class ShowAllMoviesScreen extends StatelessWidget {
       ),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4, // Display 4 items in each row
-          childAspectRatio: 2/3, // Adjust the aspect ratio as needed
+          crossAxisCount: 4, 
+          childAspectRatio: 2/3,
         ),
         itemCount: movies.length,
         itemBuilder: (context, index) {
