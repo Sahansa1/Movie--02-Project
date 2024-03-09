@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Constants.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
+import 'package:flutter_application_1/database_manager/database_manager.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   final int id;
@@ -11,7 +13,7 @@ class MovieDetailsScreen extends StatelessWidget {
     });
 
   final ListMovies movie;
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,19 +92,39 @@ class MovieDetailsScreen extends StatelessWidget {
                       child: Row(children: [
                         const Text('Popularity: '),
                         Text(movie.popularity.toString()),
-                      ],),
+                      ],
+                          ),
+                        ),
+                      ],
                     ),
-
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 16),
+                  IconButton(
+                    onPressed: () {
+                      // Get the current user's ID
+                      String userId = FirebaseAuth.instance.currentUser!.uid;
+                      
+                      // Show a snackbar when the button is clicked
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Added to Watch List'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                      
+                      // Call the function to save movie details to Firestore
+                      saveMovieDetailsToFirestore(userId, movie);
+                    },
+                    icon: Icon(Icons.favorite_border),
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    iconSize: 30,
+                  ),
+                ],
               ),
-            ],),
+            ),
           ),
-        )   
-      ],
+        ],
       ),
-      
     );
   }
 }
-

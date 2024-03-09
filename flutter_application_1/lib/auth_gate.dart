@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/home.dart';
 import 'package:flutter_application_1/Screens/homepage.dart';
 
+import 'package:flutter_application_1/database_manager/database_manager.dart';
+
 
 class AuthGate extends StatelessWidget {
  const AuthGate({super.key});
@@ -55,6 +57,7 @@ class AuthGate extends StatelessWidget {
            },
          );
        }
+       saveUserInfoToFirestore(snapshot.data!.email ?? '');
        return const HomeScreen();
      },
    );
