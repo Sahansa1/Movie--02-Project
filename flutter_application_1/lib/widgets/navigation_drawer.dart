@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/watch_list_screen.dart';
+import 'package:flutter_application_1/Screens/watched_list_screen.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key? key});
@@ -26,6 +27,16 @@ class MenuDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => WatchListScreen()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.done_all), 
+            title: const Text('Watched List'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => WatchedListScreen()), 
               );
             },
           ),

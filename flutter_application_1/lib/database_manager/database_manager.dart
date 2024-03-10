@@ -38,15 +38,15 @@ Future<void> saveUserInfoToFirestore(String email) async {
   }
 }
 
-Future<void> saveMovieDetailsToFirestore(String userId, ListMovies movie) async {
+Future<void> saveMovieDetailsToFirestore(String userId, ListMovies movie, String listType) async {
   try {
     // Reference to the user's document in the users collection
     DocumentReference<Map<String, dynamic>> userDocRef =
         FirebaseFirestore.instance.collection('users').doc(userId);
 
-    // Reference to the movies subcollection within the user's document
+    // Reference to the appropriate subcollection within the user's document based on listType
     CollectionReference<Map<String, dynamic>> movies =
-        userDocRef.collection('movies');
+        userDocRef.collection(listType);
 
     // Add a new document with a generated ID
     await movies.add({

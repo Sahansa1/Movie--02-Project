@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
 import 'package:flutter_application_1/constants.dart';
 
-class WatchListScreen extends StatelessWidget {
+class WatchedListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Watch List'),
+        title: Text('Watched List'),
       ),
       body: StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection('watch') // Change the subcollection name
+          .collection('watched') // Change the subcollection name
           .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -30,7 +30,7 @@ class WatchListScreen extends StatelessWidget {
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return Center(
-              child: Text('No movies added to watch list.'),
+              child: Text('No movies added to watched list.'),
             );
           }
           return ListView(

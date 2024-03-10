@@ -36,4 +36,6 @@ class ListMovies{
       movieId: json["id"],
     );
   }
+
+  static fromMap(Map<String, dynamic> data) {}
 }

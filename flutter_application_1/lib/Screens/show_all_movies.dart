@@ -52,7 +52,6 @@ class ShowAllMoviesScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    
                   ],
                 ),
               ),

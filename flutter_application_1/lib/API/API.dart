@@ -152,6 +152,25 @@ Future<List<ListSeries>> getHighestGrossingSeries() async {
       throw Exception('Failed to load highest grossings series');
     }
   }  
-  
-  
+
+Future<List<ListMovies>> showMovies(String baseUrl, int page) async {
+  final List<ListMovies> allMovies = [];
+  final int maxPages = 10; // Define maximum number of pages to fetch
+
+  for (int currentPage = 1; currentPage <= maxPages; currentPage++) {
+    final url = Uri.parse('$baseUrl&page=$page');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List<dynamic>;
+      final List<ListMovies> movies = decodedData.map((item) => ListMovies.fromJson(item)).toList();
+      allMovies.addAll(movies);
+    } else {
+      throw Exception('Failed to show all movies');
+    }
+  }
+
+  return allMovies;
+}
+
 }
