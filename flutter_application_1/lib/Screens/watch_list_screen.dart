@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
+import 'package:flutter_application_1/colour.dart';
 import 'package:flutter_application_1/constants.dart';
 
 class WatchListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colours.colBackground,
       appBar: AppBar(
         title: Text('Watch List'),
       ),
@@ -15,7 +16,7 @@ class WatchListScreen extends StatelessWidget {
       stream: FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection('watch') // Change the subcollection name
+          .collection('watch') 
           .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

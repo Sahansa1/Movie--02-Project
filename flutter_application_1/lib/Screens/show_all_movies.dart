@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
+import 'package:flutter_application_1/colour.dart';
 
 class ShowAllMoviesScreen extends StatelessWidget {
   final List<ListMovies> movies;
@@ -12,6 +13,7 @@ class ShowAllMoviesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colours.colBackground,
       appBar: AppBar(
         title: Text(title),
       ),

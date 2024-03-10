@@ -3,14 +3,15 @@ import 'package:flutter_application_1/API/api.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
 import 'package:flutter_application_1/Screens/show_all_movies.dart';
+import 'package:flutter_application_1/repttext.dart';
 import 'package:flutter_application_1/widgets/movies.dart';
 import 'package:flutter_application_1/widgets/navigation_drawer.dart';
 import 'package:flutter_application_1/widgets/search_by_actor.dart';
-//import 'package:flutter_application_1/widgets/search_by_actor.dart';
 import 'package:flutter_application_1/widgets/searchbar.dart';
 import 'package:flutter_application_1/widgets/series.dart';
 import 'package:flutter_application_1/widgets/trending_movies.dart';
 import 'package:flutter_application_1/widgets/trending_series.dart';
+import 'package:flutter_application_1/colour.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -64,12 +65,17 @@ class _HomeScreenState extends State<HomeScreen> {
       home: DefaultTabController(
         length: 2,
         child:Scaffold(
+          backgroundColor: Colours.colBackground,
+          //const Color.fromRGBO(66, 20, 32,0),
           drawer: const MenuDrawer(),
             body: Column(
             children: [
               AppBar(
-                backgroundColor: Colors.blue,
-                title: const Text("BingeWatch"),
+                backgroundColor: Colors.transparent,
+                elevation: 0, 
+                title: Center(
+                  child: Image.asset('assets/bingewatch_wording.png', width: 200), // Center the logo and make it bigger
+                ),
                 actions: [
                   IconButton(
                     onPressed: () {},
@@ -77,9 +83,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ],
               ),
-              const TabBar(
-                labelColor: Colors.blue, 
-                unselectedLabelColor: Colors.black,
+               TabBar(
+                labelColor: Colors.white, 
+                unselectedLabelColor: Colours.tabTitles,
                 tabs: [
                   Tab(text: 'Movies'),
                   Tab(text: 'Series'),
@@ -96,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 16),
-                            const Text('Trending Movies',),
+                            tittletext("Trending Movies"),
                             const SizedBox(height: 16),
                             FutureBuilder(
                               future: trendingMovies,
@@ -140,9 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             if (!showSearchBar1)
                                 searchbarfun2(),
                             const SizedBox(height: 2),
-                            const Text(
-                              "Top rated movies",
-                            ),
+                            tittletext("Top rated movies"),
                             Positioned(
                               top: 10,
                               right: 50,
@@ -171,9 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),  
 
-                            const Text(
-                              "Upcoming movies",
-                            ),
+                            tittletext("Upcoming movies"),
                             const SizedBox(height: 5),
                             Positioned(
                               top: 10,
@@ -202,9 +204,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 }
                               ),
                             ),
-                            const Text(
-                              "Children Friendly movies",
-                            ),
+                            tittletext("Children Friendly movies"),
+                      
                             const SizedBox(height: 5),
                             Positioned(
                               top: 10,
@@ -232,9 +233,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 }
                               ),
                             ),
-                            const Text(
-                              "Highest grossing movies",
-                            ),
+                           
+                            tittletext("Highest grossing movies"),
                             const SizedBox(height: 5),
                             Positioned(
                               top: 10,

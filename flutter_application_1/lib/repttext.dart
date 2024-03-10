@@ -33,12 +33,42 @@ Widget normaltext(String title) {
           letterSpacing: 1.25));
 }
 
+Widget homeMovieName(String title) {
+  return Text(
+    title,
+    textAlign: TextAlign.left, // Aligns the text to the left
+    style: TextStyle(
+      fontFamily: 'open sans',
+      decoration: TextDecoration.none,
+      color: const Color.fromARGB(255, 139, 138, 138).withOpacity(0.9),
+      fontSize: 10,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 1.25,
+    ),
+  );
+}
+
+Widget homeMovieYear(String title) {
+  return Text(
+    title,
+    textAlign: TextAlign.right, 
+    style: TextStyle(
+      fontFamily: 'open sans',
+      decoration: TextDecoration.none,
+      color: const Color.fromARGB(255, 168, 167, 167).withOpacity(0.9),
+      fontSize: 10,
+      fontWeight: FontWeight.w100,
+      letterSpacing: 1.25,
+    ),
+  );
+}
+
 Widget datetext(String title) {
   return Text(title,
       style: TextStyle(
           fontFamily: 'open sans',
           decoration: TextDecoration.none,
-          color: Colors.white.withOpacity(0.9),
+          color: const Color.fromARGB(255, 152, 151, 151).withOpacity(0.9),
           fontSize: 10,
           fontWeight: FontWeight.w500,
           letterSpacing: 1.02));
@@ -77,16 +107,70 @@ Widget genrestext(String title) {
           letterSpacing: 1.25));
 }
 
-Widget overviewtext(String title) {
-  return Text(title,
+Widget overviewText(String title) {
+  return Center(
+    child: Text(
+      title,
       style: TextStyle(
-          fontFamily: 'open sans',
-          decoration: TextDecoration.none,
-          color: Colors.white.withOpacity(0.9),
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 1.25));
+        fontFamily: 'open sans',
+        decoration: TextDecoration.none,
+        color: Colors.white.withOpacity(0.9),
+        fontSize: 15,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 1.25,
+      ),
+    ),
+  );
 }
+
+Widget overviewTtitle(String title) {
+  return Center(
+    child: Text(
+      title,
+      style: TextStyle(
+        fontFamily: 'open sans',
+        decoration: TextDecoration.none,
+        color: Colors.white.withOpacity(0.9),
+        fontSize: 25,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 1.25,
+      ),
+    ),
+  );
+}
+
+Widget detailsBoxTitle(String title) {
+  return Center(
+    child: Text(
+      title,
+      style: TextStyle(
+        fontFamily: 'open sans',
+        decoration: TextDecoration.none,
+        color: Colors.white.withOpacity(0.9),
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 1.25,
+      ),
+    ),
+  );
+}
+
+Widget detailsBoxDetail(String title) {
+  return Center(
+    child: Text(
+      title,
+      style: TextStyle(
+        fontFamily: 'open sans',
+        decoration: TextDecoration.none,
+        color: const Color.fromARGB(255, 180, 177, 177).withOpacity(0.9),
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 1.25,
+      ),
+    ),
+  );
+}
+
 
 Widget Tabbartext(String title) {
   return Text(title,
@@ -98,3 +182,4 @@ Widget Tabbartext(String title) {
           fontWeight: FontWeight.w500,
           letterSpacing: 1));
 }
+

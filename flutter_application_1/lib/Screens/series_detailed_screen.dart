@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Constants.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
+import 'package:flutter_application_1/colour.dart';
 
 class SeriesDetailsScreen extends StatelessWidget {
 
@@ -14,6 +15,7 @@ class SeriesDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colours.colBackground,
       body: CustomScrollView(slivers: [
         SliverAppBar.large(
           leading: const BackButton(),
@@ -50,9 +52,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        border:Border.all(
-                          color: Colors.lightBlue, 
-                        ),
+                        border: Border.all(color: Colours.detailsBorder), 
                         borderRadius: BorderRadius.circular(10),  
                       ),
                       child: Row(children: [
@@ -81,9 +81,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        border:Border.all(
-                          color: Colors.lightBlue, 
-                          ),
+                        border: Border.all(color: Colours.detailsBorder), 
                         borderRadius: BorderRadius.circular(10),  
                       ),
                       child: Row(children: [

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/Constants.dart';
 import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
+import 'package:flutter_application_1/repttext.dart';
 
 class Movies extends StatelessWidget {
   const Movies({
@@ -56,21 +58,9 @@ class Movies extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        snapshot.data![index].title, 
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      
-                      Text(
-                        releaseYear, 
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                      ),
+                      homeMovieName(snapshot.data![index].title),
+                      const SizedBox(width: 7),
+                      homeMovieYear(releaseYear)
                     ],
                   ),
                 ],
