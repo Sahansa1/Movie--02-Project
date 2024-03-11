@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/API/api.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
+import 'package:flutter_application_1/Screens/all_movies.dart';
 import 'package:flutter_application_1/Screens/show_all_movies.dart';
 import 'package:flutter_application_1/repttext.dart';
 import 'package:flutter_application_1/widgets/movies.dart';
@@ -49,14 +50,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
  
   
-  void _navigateToShowAllMoviesScreen(List<ListMovies> allmovies, String title) {
+  void _navigateToShowAllMoviesScreen(String movieType) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => ShowAllMoviesScreen(movies: allmovies, title: title),
+      builder: (context) => MoviesGridScreen(movieType: movieType),
     ),
   );
 }
+
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               right: 50,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  _navigateToShowAllMoviesScreen( await topratedMovies, 'Top Rated Movies');
+                                  _navigateToShowAllMoviesScreen("Top Rated");
                                 },
                                 child: Text('See more'),
                               ),
@@ -182,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               right: 50,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  _navigateToShowAllMoviesScreen( await upcomingMovies,'Up Coming Movies');
+                                  _navigateToShowAllMoviesScreen("Grossing");
                                 },
                                 child: Text('See more'),
                               ),
@@ -212,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               right: 50,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  _navigateToShowAllMoviesScreen( await childrenFriendlyMovies,'Children Friendly movies');
+                                  _navigateToShowAllMoviesScreen("Action Animation");
                                 },
                                 child: Text('See more'),
                               ),
@@ -241,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               right: 50,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  _navigateToShowAllMoviesScreen( await highestGrossingMovies,'Highest grossing movies');
+                                  _navigateToShowAllMoviesScreen('Romantic Animation');
                                 },
                                 child: Text('See more'),
                               ),
@@ -376,7 +378,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 }
                               ),
                             )
-                            
                           ],
                         ),
                       ),
