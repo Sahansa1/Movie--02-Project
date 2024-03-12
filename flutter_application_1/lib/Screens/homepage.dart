@@ -48,17 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
     highestGrossingSeries= API().getHighestGrossingSeries();
   }
 
- 
-  
   void _navigateToShowAllMoviesScreen(String movieType) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => MoviesGridScreen(movieType: movieType),
-    ),
-  );
-}
-
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MoviesGridScreen(movieType: movieType),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,320 +67,320 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colours.colBackground,
           //const Color.fromRGBO(66, 20, 32,0),
           drawer: const MenuDrawer(),
-            body: Column(
+            body: Stack(
             children: [
-              AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0, 
-                title: Center(
-                  child: Image.asset('assets/bingewatch_wording.png', width: 200), // Center the logo and make it bigger
-                ),
-                actions: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.settings),
-                  )
-                ],
-              ),
-               TabBar(
-                labelColor: Colors.white, 
-                unselectedLabelColor: Colours.tabTitles,
-                tabs: [
-                  Tab(text: 'Movies'),
-                  Tab(text: 'Series'),
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 16),
-                            tittletext("Trending Movies"),
-                            const SizedBox(height: 16),
-                            FutureBuilder(
-                              future: trendingMovies,
-                              builder: (context, snapshot) {
-                                if (snapshot.hasError) {
-                                  return Center(
-                                    child: Text(snapshot.error.toString()),
-                                  );
-                                } else if (snapshot.hasData) {
-                                  return TrendingMovies(snapshot: snapshot);
-                                } else {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                }
-                              },
-                            ),
-                            Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      showSearchBar1 = true;
-                                    });
+              Column(
+                children: [
+                  AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0, 
+                    title: Center(
+                      child: Image.asset('assets/bingewatch_wording.png', width: 200), // Center the logo and make it bigger
+                    ),
+                    actions: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.settings),
+                      )
+                    ],
+                  ),
+                   TabBar(
+                    labelColor: Colors.white, 
+                    unselectedLabelColor: Colours.tabTitles,
+                    tabs: [
+                      Tab(text: 'Movies'),
+                      Tab(text: 'Series'),
+                    ],
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 16),
+                                tittletext("Trending Movies"),
+                                const SizedBox(height: 16),
+                                FutureBuilder(
+                                  future: trendingMovies,
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasError) {
+                                      return Center(
+                                        child: Text(snapshot.error.toString()),
+                                      );
+                                    } else if (snapshot.hasData) {
+                                      return TrendingMovies(snapshot: snapshot);
+                                    } else {
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
                                   },
-                                  child: Text('Title'),
                                 ),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      showSearchBar1 = false;
-                                    });
-                                  },
-                                  child: Text('Actor'),
+                                Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          showSearchBar1 = true;
+                                        });
+                                      },
+                                      child: Text('Title'),
+                                    ),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          showSearchBar1 = false;
+                                        });
+                                      },
+                                      child: Text('Actor'),
+                                    ),
+                                  ],
                                 ),
+                                if (showSearchBar1)
+                                    searchbarfun(),
+                                if (!showSearchBar1)
+                                    searchbarfun2(),
+                                const SizedBox(height: 2),
+                                tittletext("Top rated movies"),
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      _navigateToShowAllMoviesScreen("Top Rated");
+                                    },
+                                    child: Text('See more'),
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: topratedMovies,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Movies(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                ),  
+
+                                tittletext("Upcoming movies"),
+                                const SizedBox(height: 5),
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      _navigateToShowAllMoviesScreen("Grossing");
+                                    },
+                                    child: Text('See more'),
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: upcomingMovies,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Movies(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                ),
+                                tittletext("Children Friendly movies"),
+                        
+                                const SizedBox(height: 5),
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: ElevatedButton(
+                                    onPressed: () async{
+                                      _navigateToShowAllMoviesScreen("Action Animation");
+                                    },
+                                    child: Text('See more'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: childrenFriendlyMovies,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Movies(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                ),
+                               
+                                tittletext("Highest grossing movies"),
+                                const SizedBox(height: 5),
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      _navigateToShowAllMoviesScreen('Romantic Animation');
+                                    },
+                                    child: Text('See more'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: highestGrossingMovies,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Movies(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                )
                               ],
                             ),
-                            if (showSearchBar1)
-                                searchbarfun(),
-                            if (!showSearchBar1)
-                                searchbarfun2(),
-                            const SizedBox(height: 2),
-                            tittletext("Top rated movies"),
-                            Positioned(
-                              top: 10,
-                              right: 50,
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  _navigateToShowAllMoviesScreen("Top Rated");
-                                },
-                                child: Text('See more'),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            SizedBox(
-                              child: FutureBuilder(
-                                future: topratedMovies,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Center(
-                                      child: Text(snapshot.error.toString()),
-                                    );
-                                  } else if (snapshot.hasData) {
-                                    return Movies(snapshot: snapshot);
-                                  } else {
-                                    return const Center(child: CircularProgressIndicator());
-                                  }
-                                },
-                              ),
-                            ),  
-
-                            tittletext("Upcoming movies"),
-                            const SizedBox(height: 5),
-                            Positioned(
-                              top: 10,
-                              right: 50,
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  _navigateToShowAllMoviesScreen("Grossing");
-                                },
-                                child: Text('See more'),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            SizedBox(
-                              child: FutureBuilder(
-                                future: upcomingMovies,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Center(
-                                      child: Text(snapshot.error.toString()),
-                                    );
-                                  } else if (snapshot.hasData) {
-                                    return Movies(snapshot: snapshot);
-                                  } else {
-                                    return const Center(child: CircularProgressIndicator());
-                                  }
-                                }
-                              ),
-                            ),
-                            tittletext("Children Friendly movies"),
-                      
-                            const SizedBox(height: 5),
-                            Positioned(
-                              top: 10,
-                              right: 50,
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  _navigateToShowAllMoviesScreen("Action Animation");
-                                },
-                                child: Text('See more'),
-                              ),
-                            ),
-                            SizedBox(
-                              child: FutureBuilder(
-                                future: childrenFriendlyMovies,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Center(
-                                      child: Text(snapshot.error.toString()),
-                                    );
-                                  } else if (snapshot.hasData) {
-                                    return Movies(snapshot: snapshot);
-                                  } else {
-                                    return const Center(child: CircularProgressIndicator());
-                                  }
-                                }
-                              ),
-                            ),
-                           
-                            tittletext("Highest grossing movies"),
-                            const SizedBox(height: 5),
-                            Positioned(
-                              top: 10,
-                              right: 50,
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  _navigateToShowAllMoviesScreen('Romantic Animation');
-                                },
-                                child: Text('See more'),
-                              ),
-                            ),
-                            SizedBox(
-                              child: FutureBuilder(
-                                future: highestGrossingMovies,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Center(
-                                      child: Text(snapshot.error.toString()),
-                                    );
-                                  } else if (snapshot.hasData) {
-                                    return Movies(snapshot: snapshot);
-                                  } else {
-                                    return const Center(child: CircularProgressIndicator());
-                                  }
-                                }
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 16),
-                            const Text('Trending Series',),
-                            const SizedBox(height: 16),
-                            FutureBuilder(
-                              future: trendingSeries,
-                              builder: (context, snapshot) {
-                                if (snapshot.hasError) {
-                                  return Center(
-                                    //child: Text('serrrror'),
-                                    child: Text(snapshot.error.toString()),
-                                  );
-                                } else if (snapshot.hasData) {
-                                  return TrendingSeries(snapshot: snapshot);
-                                } else {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                }
-                              }, 
+                        SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 16),
+                                const Text('Trending Series',),
+                                const SizedBox(height: 16),
+                                FutureBuilder(
+                                  future: trendingSeries,
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasError) {
+                                      return Center(
+                                        //child: Text('serrrror'),
+                                        child: Text(snapshot.error.toString()),
+                                      );
+                                    } else if (snapshot.hasData) {
+                                      return TrendingSeries(snapshot: snapshot);
+                                    } else {
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  }, 
+                                ),
+                                const SizedBox(height: 16),
+                                const Text(
+                                  "Top rated series",
+                                ),
+                                const SizedBox(height: 5),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: topRatedSeries,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Series(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
+                                const Text(
+                                  "UpComing series",
+                                ),
+                                const SizedBox(height: 5),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: upComingSeries,
+                builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Series(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
+                                const Text(
+                                  "Children Friendly Series",
+                                ),
+                                const SizedBox(height: 5),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: childrenFriendlySeries,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Series(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                ),
+                                const Text(
+                                  "Highest Grossing Series",
+                                ),
+                                const SizedBox(height: 5),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: highestGrossingSeries,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Series(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                )
+                              ],
                             ),
-                            const SizedBox(height: 16),
-                            const Text(
-                              "Top rated series",
-                            ),
-                            const SizedBox(height: 5),
-                            SizedBox(
-                              child: FutureBuilder(
-                                future: topRatedSeries,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Center(
-                                      child: Text(snapshot.error.toString()),
-                                    );
-                                  } else if (snapshot.hasData) {
-                                    return Series(snapshot: snapshot);
-                                  } else {
-                                    return const Center(child: CircularProgressIndicator());
-                                  }
-                                }
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            const Text(
-                              "UpComing series",
-                            ),
-                            const SizedBox(height: 5),
-                            SizedBox(
-                              child: FutureBuilder(
-                                future: upComingSeries,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Center(
-                                      child: Text(snapshot.error.toString()),
-                                    );
-                                  } else if (snapshot.hasData) {
-                                    return Series(snapshot: snapshot);
-                                  } else {
-                                    return const Center(child: CircularProgressIndicator());
-                                  }
-                                }
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            const Text(
-                              "Children Friendly Series",
-                            ),
-                            const SizedBox(height: 5),
-                            SizedBox(
-                              child: FutureBuilder(
-                                future: childrenFriendlySeries,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Center(
-                                      child: Text(snapshot.error.toString()),
-                                    );
-                                  } else if (snapshot.hasData) {
-                                    return Series(snapshot: snapshot);
-                                  } else {
-                                    return const Center(child: CircularProgressIndicator());
-                                  }
-                                }
-                              ),
-                            ),
-                            const Text(
-                              "Highest Grossing Series",
-                            ),
-                            const SizedBox(height: 5),
-                            SizedBox(
-                              child: FutureBuilder(
-                                future: highestGrossingSeries,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return Center(
-                                      child: Text(snapshot.error.toString()),
-                                    );
-                                  } else if (snapshot.hasData) {
-                                    return Series(snapshot: snapshot);
-                                  } else {
-                                    return const Center(child: CircularProgressIndicator());
-                                  }
-                                }
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

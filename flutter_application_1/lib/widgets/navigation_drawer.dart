@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/watch_list_screen.dart';
 import 'package:flutter_application_1/Screens/watched_list_screen.dart';
+import 'package:flutter_application_1/auth_gate.dart';
+import 'package:flutter_application_1/colour.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key? key});
@@ -11,13 +14,13 @@ class MenuDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const UserAccountsDrawerHeader(
+          UserAccountsDrawerHeader(
             accountName: Text('nanan'), 
             accountEmail: Text('lalalal@dadad'), 
             //currentAccountPicture: CircleAvatar(
             //  child: Iamge.,
             decoration: BoxDecoration(
-              color: Colors.cyan,
+              color: Colours.colBackground,
             ),
           ),
           ListTile(
@@ -39,6 +42,13 @@ class MenuDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => WatchedListScreen()), 
               );
             },
+          ),
+          ListTile(
+              title: Text('Sign Out'),
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AuthGate()));
+              },
           ),
         ],
       ),

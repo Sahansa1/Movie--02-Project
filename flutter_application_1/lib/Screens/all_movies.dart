@@ -140,10 +140,10 @@ class GridSlider extends StatelessWidget {
     return GridView.builder(
       controller: scrollController,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4, // Change the number of columns as needed
+        crossAxisCount: 4, 
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,
-        childAspectRatio: 0.7, // Adjust the aspect ratio as needed
+        childAspectRatio: 0.7, 
       ),
       itemCount: displayedMovies.length,
       itemBuilder: (context, index) {
@@ -160,7 +160,7 @@ class GridSlider extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
-                '${Constants.imagePath}${displayedMovies[index].poster_path}', // Assuming you have a poster path in your ListMovies model
+                '${Constants.imagePath}${displayedMovies[index].poster_path}', 
                 fit: BoxFit.cover,
               ),
             ),

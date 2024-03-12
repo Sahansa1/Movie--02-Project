@@ -1,12 +1,15 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Constants.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/colour.dart';
+import 'package:flutter_application_1/constants.dart';
 import 'package:flutter_application_1/database_manager/database_manager.dart';
 import 'package:flutter_application_1/repttext.dart';
 
-class MovieDetailsScreen extends StatelessWidget {
+class MovieDetailsScreen extends StatefulWidget {
   final int id;
   const MovieDetailsScreen({
     Key? key, 
@@ -15,7 +18,72 @@ class MovieDetailsScreen extends StatelessWidget {
   }) : super(key: key);
 
   final ListMovies movie;
+
+  @override
+  _MovieDetailsScreenState createState() => _MovieDetailsScreenState();
+}
+
+class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
+  bool isOnWatchedList = false;
+  late StreamSubscription<DocumentSnapshot> _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _initWatchedList();
+  }
+
   
+  void _initWatchedList() async {
+  final isOnWatchedList = await checkIfOnWatchedList();
+  setState(() {
+    this.isOnWatchedList = isOnWatchedList;
+  });
+}
+  
+  Future<bool> checkIfOnWatchedList() async {
+  final userId = FirebaseAuth.instance.currentUser!.uid;
+  print(userId);
+
+  final querySnapshot = await FirebaseFirestore.instance
+      .collection('users')
+      .doc(userId)
+      .collection('watched')
+      .get();
+
+  for (final docSnapshot in querySnapshot.docs) {
+    final data = docSnapshot.data();
+    if (data != null && data['id'] == widget.movie.id) {
+      return true;
+    }
+  }
+
+  return false;
+  
+}
+Future<void> removeFromWatchedList(String userId, int movieId) async {
+  try {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('watched')
+        .where('id', isEqualTo: movieId)
+        .get();
+
+    for (final doc in querySnapshot.docs) {
+      await doc.reference.delete();
+    }
+
+    print('Movie removed from watched list');
+  } catch (e) {
+    print('Error removing movie from watched list: $e');
+    // Handle error as needed
+  }
+}
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +96,9 @@ class MovieDetailsScreen extends StatelessWidget {
             expandedHeight: 500,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(movie.title),
+              title: Text(widget.movie.title),
               background: Image.network(
-                '${Constants.imagePath}${movie.backdrop_path}',
+                '${Constants.imagePath}${widget.movie.backdrop_path}',
                 filterQuality: FilterQuality.high,
                 fit: BoxFit.cover,
               ),
@@ -43,51 +111,12 @@ class MovieDetailsScreen extends StatelessWidget {
                 children: [
                   overviewTtitle("Overview"),
                   const SizedBox(height: 16),
-                  overviewText(movie.overview),
+                  overviewText(widget.movie.overview),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: const Color.fromARGB(255, 226, 228, 228)), 
-                          borderRadius: BorderRadius.circular(10),  
-                        ),
-                        child: Row(
-                          children: [
-                            detailsBoxTitle('Release Date: '),
-                            detailsBoxDetail(movie.release_date), 
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colours.detailsBorder), 
-                          borderRadius: BorderRadius.circular(10),  
-                        ),
-                        child: Row(
-                          children: [
-                            detailsBoxTitle('Rating: '),
-                            const Icon(Icons.star, color: Colors.amber),                     
-                            detailsBoxDetail('${movie.vote_average.toStringAsFixed(1)}/10'), 
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colours.detailsBorder), 
-                          borderRadius: BorderRadius.circular(10),  
-                        ),
-                        child: Row(
-                          children: [
-                            detailsBoxTitle('Popularity: '),
-                            detailsBoxDetail(movie.popularity.toString()), 
-                          ],
-                        ),
-                      ),
+                      // Details Widgets...
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -95,29 +124,40 @@ class MovieDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () {
-                          // Get the current user's ID
-                          String userId = FirebaseAuth.instance.currentUser!.uid;
+                        onPressed: () async {
+                          final userId = FirebaseAuth.instance.currentUser!.uid;
+                          final updatedOnWatchedList = await checkIfOnWatchedList();
                           
-                          // Show a snackbar when the button is clicked
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Added to Watched List'),
-                              duration: Duration(seconds: 2),
-                            ),
-                          );
-                          
-                          // Call the function to save movie details to Firestore
-                          saveMovieDetailsToFirestore(userId, movie,'watched');
+                          if (isOnWatchedList) {
+                            await removeFromWatchedList(userId, widget.movie.id);
+                            print(isOnWatchedList);
+                            // Remove from Watched List
+                            // Call function to remove movie details from Firestore
+                          } else {
+                            // Add to Watched List
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Added to Watched List'),
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                            // Call the function to save movie details to Firestore
+                            saveMovieDetailsToFirestore(userId, widget.movie, 'watched');
+                            
+                          }
+                          setState(() {
+                            isOnWatchedList = !isOnWatchedList;
+                          });
                         },
-                        icon: const Icon(Icons.check),
-                        label: const Text('Add to Watched List'),
+                        icon: Icon(isOnWatchedList ? Icons.remove : Icons.check),
+                        label: Text(isOnWatchedList ? 'Remove from Watched List' : 'Add to Watched List'),
                       ),
+
+
                       const SizedBox(width: 16),
                       IconButton(
                         onPressed: () {
-                          String userId = FirebaseAuth.instance.currentUser!.uid;
-                          
+                          final userId = FirebaseAuth.instance.currentUser!.uid;
                           // Show a snackbar when the button is clicked
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -125,12 +165,11 @@ class MovieDetailsScreen extends StatelessWidget {
                               duration: Duration(seconds: 2),
                             ),
                           );
-                          
                           // Call the function to save movie details to Firestore
-                          saveMovieDetailsToFirestore(userId, movie,'watch');
+                          saveMovieDetailsToFirestore(userId, widget.movie, 'watch');
                         },
                         icon: const Icon(Icons.favorite_border),
-                        color: Colors.white,
+                        color: isOnWatchedList ? Colors.white : null,
                         iconSize: 30,
                       ),
                     ],
@@ -144,6 +183,7 @@ class MovieDetailsScreen extends StatelessWidget {
     );
   }
 }
+
 
 /*
 
