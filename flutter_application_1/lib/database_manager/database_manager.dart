@@ -1,16 +1,4 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 
-// class DatabaseManager {
-//   final CollectionReference profileList =
-//       Firestore.instance.collection('profileInfo');
-
-//   Future<void> createUserData(
-//       String email, String uid) async {
-//     return await profileList
-//         .document(uid)
-//         .setData({'email': email});
-//   }
-// }
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
