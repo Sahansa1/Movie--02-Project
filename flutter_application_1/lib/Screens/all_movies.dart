@@ -104,7 +104,7 @@ class _MoviesGridScreenState extends State<MoviesGridScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Movies Grid'),
+        title: const Text('Movies Grid'),
         
       ),
       body: Column(
@@ -114,7 +114,7 @@ class _MoviesGridScreenState extends State<MoviesGridScreen> {
             child: TextField(
               controller: searchController,
               onChanged: searchMovies,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search Movies',
                 prefixIcon: Icon(Icons.search),
               ),
@@ -139,7 +139,7 @@ class GridSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       controller: scrollController,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4, 
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,
