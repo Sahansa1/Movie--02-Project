@@ -131,7 +131,6 @@ class _MoviesGridScreenState extends State<MoviesGridScreen> {
 }
 
 
-
 class GridSlider extends StatelessWidget {
   final ScrollController scrollController;
   final List<ListMovies> displayedMovies;

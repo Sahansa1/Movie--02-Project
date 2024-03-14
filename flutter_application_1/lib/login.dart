@@ -4,14 +4,11 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/home.dart';
 import 'package:flutter_application_1/Screens/homepage.dart';
+import 'package:flutter_application_1/colour.dart';
 import 'package:flutter_application_1/database_manager/database_manager.dart';
 import 'package:flutter_application_1/sign_up.dart';
 
-
 import 'package:shared_preferences/shared_preferences.dart';
-
-
-
 
 class AuthGate extends StatefulWidget {
   const AuthGate({Key? key}) : super(key: key);
@@ -53,6 +50,7 @@ class _AuthGateState extends State<AuthGate> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
+            backgroundColor: Color.fromRGBO(0, 0, 0, 1),
             body: Center(
               child: CircularProgressIndicator(),
             ),
@@ -65,17 +63,28 @@ class _AuthGateState extends State<AuthGate> {
         } else {
           // If _shouldNavigateToHome is false, show the login screen
           return Scaffold(
-            appBar: AppBar(title: Text('Login'),automaticallyImplyLeading: false,),
+            backgroundColor: Colours.colBackground ,
+            appBar: AppBar(
+              title: Text(
+                'Login',
+                style: TextStyle(color: const Color.fromARGB(255, 87, 87, 87))),
+              automaticallyImplyLeading: false,
+              backgroundColor: Color.fromARGB(255, 18, 1, 18),
+              ),
+            
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset('assets/bingewatch_wording.png', width: 200), 
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: TextField(
                       controller: _emailController,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Email',
+                        
                       ),
                     ),
                   ),
@@ -84,6 +93,7 @@ class _AuthGateState extends State<AuthGate> {
                     child: TextField(
                       controller: _passwordController,
                       obscureText: true,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Password',
                       ),
@@ -100,24 +110,34 @@ class _AuthGateState extends State<AuthGate> {
                           });
                         },
                       ),
-                      Text('Remember Me'),
+                      Text(
+                        'Remember Me',
+                        style: TextStyle(color: Color.fromARGB(255, 69, 69, 69)),
+                      ),
                     ],
                   ),
                   ElevatedButton(
                     onPressed: () {
                       _signInWithEmailAndPassword();
                     },
-                    child: Text('Sign In'),
+                    child: Text('Log In',
+                    ),
+                    
                   ),
-                  TextButton(
-                    onPressed: () {
-
+                   GestureDetector(
+                    onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => SignUpPage()),
                       );
                     },
-                    child: Text('Sign Up'),
+                    child: Text(
+                      "Don't have an account? Sign Up",
+                      style: TextStyle(
+                        color: Colors.blue, // Change color to blue or any other desired color
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
                   ),
                 ],
               ),

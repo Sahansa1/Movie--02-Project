@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/colour.dart';
 import 'package:flutter_application_1/login.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -24,9 +25,13 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colours.colBackground,
       appBar: AppBar(
-        title: Text('Sign Up'),
-      ),
+        title: Text('Sign Up',
+        style: TextStyle(color: const Color.fromARGB(255, 87, 87, 87))),
+         backgroundColor: Color.fromARGB(255, 18, 1, 18),
+         ),
+
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
@@ -35,14 +40,17 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             TextField(
               controller: _emailController,
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Email',
+                
               ),
             ),
             SizedBox(height: 20.0),
             TextField(
               controller: _passwordController,
               obscureText: true,
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Password',
               ),
