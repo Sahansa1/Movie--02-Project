@@ -125,6 +125,43 @@ Future<void> removeFromWatchList(String userId, int movieId) async {
     // Handle error as needed
   }
 }
+Widget _buildInfoBox(String title, String value) {
+  return Container(
+    width: MediaQuery.of(context).size.width / 3 - 20, // Adjust width as needed
+    padding: EdgeInsets.all(8),
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.white), // Border color
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Center(
+          child: Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white, // Title color
+            ),
+          ),
+        ),
+        SizedBox(height: 4),
+        Center(
+          child: Text(
+            value,
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              color: Colors.white, // Value color
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +195,14 @@ Future<void> removeFromWatchList(String userId, int movieId) async {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Details Widgets...
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _buildInfoBox('Release Date', widget.movie.release_date),
+                          _buildInfoBox('Popularity', widget.movie.popularity.toString()),
+                          _buildInfoBox('Vote Average', widget.movie.vote_average.toString()),
+                        ],
+                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -194,7 +238,6 @@ Future<void> removeFromWatchList(String userId, int movieId) async {
                         icon: Icon(isOnWatchedList ? Icons.remove : Icons.check),
                         label: Text(isOnWatchedList ? 'Remove from Watched List' : 'Add to Watched List'),
                       ),
-
 
                       const SizedBox(width: 16),
                       ElevatedButton.icon(

@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<ListMovies>> upcomingMovies;
   late Future<List<ListMovies>> childrenFriendlyMovies;
   late Future<List<ListMovies>> highestGrossingMovies;
+  late Future<List<ListMovies>> bestMovies;
   late Future<List<ListSeries>> trendingSeries;
   late Future<List<ListSeries>> topRatedSeries;
   late Future<List<ListSeries>> upComingSeries;
@@ -46,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     upComingSeries = API().getUpComingSeries();
     childrenFriendlySeries = API().getChildrenFriendlySeries();
     highestGrossingSeries= API().getHighestGrossingSeries();
+    bestMovies= API().getBestMovies();
   }
 
   void _navigateToShowAllMoviesScreen(String movieType) {
@@ -175,13 +177,42 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),  
 
+                                tittletext("Best movies"),
+                                const SizedBox(height: 5),
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      _navigateToShowAllMoviesScreen("Best");
+                                    },
+                                    child: Text('See more'),
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                SizedBox(
+                                  child: FutureBuilder(
+                                    future: bestMovies,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(snapshot.error.toString()),
+                                        );
+                                      } else if (snapshot.hasData) {
+                                        return Movies(snapshot: snapshot);
+                                      } else {
+                                        return const Center(child: CircularProgressIndicator());
+                                      }
+                                    }
+                                  ),
+                                ),
+
                                 tittletext("Upcoming movies"),
                                 const SizedBox(height: 5),
                                 Align(
                                   alignment: Alignment.topRight,
                                   child: ElevatedButton(
                                     onPressed: () async {
-                                      _navigateToShowAllMoviesScreen("Grossing");
+                                      _navigateToShowAllMoviesScreen("UpComing");
                                     },
                                     child: Text('See more'),
                                   ),
@@ -210,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   alignment: Alignment.topRight,
                                   child: ElevatedButton(
                                     onPressed: () async{
-                                      _navigateToShowAllMoviesScreen("Action Animation");
+                                      _navigateToShowAllMoviesScreen("Children");
                                     },
                                     child: Text('See more'),
                                   ),
@@ -238,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   alignment: Alignment.topRight,
                                   child: ElevatedButton(
                                     onPressed: () async {
-                                      _navigateToShowAllMoviesScreen('Romantic Animation');
+                                      _navigateToShowAllMoviesScreen('Grossing');
                                     },
                                     child: Text('See more'),
                                   ),
@@ -319,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(
                                   child: FutureBuilder(
                                     future: upComingSeries,
-                builder: (context, snapshot) {
+                                    builder: (context, snapshot) {
                                       if (snapshot.hasError) {
                                         return Center(
                                           child: Text(snapshot.error.toString()),

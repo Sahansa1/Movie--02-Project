@@ -64,17 +64,20 @@ class _MoviesGridScreenState extends State<MoviesGridScreen> {
     // Customize the API endpoint based on the movie type
     
     if (widget.movieType == 'Top Rated') {
-      
       url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=${Constants.APIKey}&page=$page';
-    } else if (widget.movieType == 'Grossing') {
-      
-      url = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&sort_by=revenue.desc&page=$page';
-    }else if (widget.movieType == 'Action Animation'){
-      url = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&adult=false&with_genres=16,28&page=$page';
-    }else if (widget.movieType == 'Romantic Animation'){
-      url = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&adult=false&with_genres=16,10749&page=$page';
-    }
 
+    } else if (widget.movieType == 'Grossing') {
+      url = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&sort_by=revenue.desc&page=$page';
+
+    }else if (widget.movieType == 'UpComing'){
+      url = 'https://api.themoviedb.org/3/movie/upcoming?api_key=${Constants.APIKey}&page=$page';
+
+    }else if (widget.movieType == 'Children'){
+      url = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&adult=false&with_genres=16,10749&page=$page';
+    
+    }else if (widget.movieType == 'Best'){
+      url= 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&primary_release_year=2024&sort_by=popularity.desc&page=$page';
+    }
     final response = await http.get(
       Uri.parse(url),
     );

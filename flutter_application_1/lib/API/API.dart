@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter_application_1/Constants.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
 import 'package:http/http.dart' as http;
 
 class API {
-  
     static const trendingMovieURL = 'https://api.themoviedb.org/3/trending/movie/day?api_key=${Constants.APIKey}';
     static const topRatedMovieURL = 'https://api.themoviedb.org/3/movie/top_rated?api_key=${Constants.APIKey}';
     static const upComingMovieURL = 'https://api.themoviedb.org/3/movie/upcoming?api_key=${Constants.APIKey}';
@@ -18,6 +16,15 @@ class API {
    // static const searchMoviesURL = 'https://api.themoviedb.org/3/search/movie?api_key=${Constants.APIKey}';
     static const highestGrossingSeriesURL = 'https://api.themoviedb.org/3/discover/tv?api_key=${Constants.APIKey}&sort_by=revenue.desc';
     static const childrenFriendlySeriesURL = 'https://api.themoviedb.org/3/discover/tv?api_key=${Constants.APIKey}&sort_by=revenue.desc&adult=false&with_genres=16'; 
+
+    /*String currentYear = DateTime.now().year.toString();
+    static const bestMoviesURL = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&primary_release_year=$currentYear&sort_by=popularity.desc';*/
+
+
+  static String get bestMoviesUrl {
+    String currentYear = DateTime.now().year.toString();
+    return 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.APIKey}&primary_release_year=$currentYear&sort_by=popularity.desc';
+  }
 
   Future<List<ListMovies>> getTrendingMovies() async {
     final response = await http.get(Uri.parse(trendingMovieURL));
@@ -90,6 +97,18 @@ class API {
     }
   }
 
+  Future<List<ListMovies>> getBestMovies() async {
+    final response = await http.get(Uri.parse(bestMoviesUrl));
+    
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List<dynamic>;
+      List<ListMovies> trendingMovies = decodedData.map((item) => ListMovies.fromJson(item)).toList();
+      return trendingMovies;
+    } else {
+      throw Exception('Failed to load best movies');
+    }
+  }
+
   /*Future<List<ListMovies>> getSearchedMovies(String searchTerm) async {
     final queryParameters = {'query': searchTerm};
     final uri = Uri.parse(searchMoviesURL).replace(queryParameters: queryParameters);
@@ -131,7 +150,7 @@ class API {
 
 Future<List<ListMovies>> getHighestGrossingMovies() async {
     final response = await http.get(Uri.parse(highestGrossingMoviesURL));
-    
+  
     if (response.statusCode == 200) {
       final decodedData = json.decode(response.body)['results'] as List<dynamic>;
       List<ListMovies> highestGrossingMovies = decodedData.map((item) => ListMovies.fromJson(item)).toList();
@@ -151,7 +170,7 @@ Future<List<ListSeries>> getHighestGrossingSeries() async {
     } else {
       throw Exception('Failed to load highest grossings series');
     }
-  }  
+  } 
 
 Future<List<ListMovies>> showMovies(String baseUrl, int page) async {
   final List<ListMovies> allMovies = [];
