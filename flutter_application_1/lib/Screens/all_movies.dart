@@ -60,8 +60,6 @@ class _MoviesGridScreenState extends State<MoviesGridScreen> {
   Future<List<ListMovies>> fetchAllMoviesWithPage(int page) async {
     List<ListMovies> allMovies = [];
     String url = '';
-
-    // Customize the API endpoint based on the movie type
     
     if (widget.movieType == 'Top Rated') {
       url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=${Constants.APIKey}&page=$page';
