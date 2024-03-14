@@ -1,24 +1,41 @@
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
 import 'package:flutter_application_1/colour.dart';
 import 'package:flutter_application_1/constants.dart';
 
-class WatchedListScreen extends StatelessWidget {
+class WatchedListScreen extends StatefulWidget {
+  @override
+  _WatchedListScreenState createState() => _WatchedListScreenState();
+}
+
+class _WatchedListScreenState extends State<WatchedListScreen> {
+  bool _isAscending = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colours.colBackground,
       appBar: AppBar(
         title: Text('Watched List'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.sort),
+            onPressed: () {
+              setState(() {
+                _isAscending = !_isAscending;
+              });
+            },
+          ),
+        ],
       ),
       body: StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection('users')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection('watched') // Change the subcollection name
-          .snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .collection('watched')
+            .orderBy('title', descending: !_isAscending)
+            .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -37,12 +54,13 @@ class WatchedListScreen extends StatelessWidget {
           }
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+              Map<String, dynamic> data =
+                  doc.data() as Map<String, dynamic>;
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   onTap: () {
-                   
+                    // Navigate to movie details screen
                   },
                   child: Card(
                     elevation: 3,
@@ -56,18 +74,19 @@ class WatchedListScreen extends StatelessWidget {
                             height: 150,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage('${Constants.imagePath}${data['poster_path']}'),
+                                image: NetworkImage(
+                                    '${Constants.imagePath}${data['poster_path']}'),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                          
                           SizedBox(width: 10),
                           // Movie Details
                           Expanded(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   data['title'],
