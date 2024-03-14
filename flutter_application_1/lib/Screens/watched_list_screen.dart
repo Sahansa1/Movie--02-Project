@@ -42,7 +42,7 @@ class WatchedListScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   onTap: () {
-                  //have to add the mociedetails screen 
+                   
                   },
                   child: Card(
                     elevation: 3,

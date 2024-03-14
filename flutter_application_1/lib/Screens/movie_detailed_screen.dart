@@ -39,6 +39,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   void _initWatchedList() async {
   final isOnWatchedList = await checkIfOnWatchedList();
   setState(() {
+
     this.isOnWatchedList = isOnWatchedList;
   });
 }
@@ -66,7 +67,6 @@ void _initWatchList() async {
       return true;
     }
   }
-
   return false;
 }
 

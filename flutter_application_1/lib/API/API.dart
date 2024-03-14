@@ -188,7 +188,6 @@ Future<List<ListMovies>> showMovies(String baseUrl, int page) async {
       throw Exception('Failed to show all movies');
     }
   }
-
   return allMovies;
 }
 
