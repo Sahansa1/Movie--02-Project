@@ -5,7 +5,6 @@ import 'package:flutter_application_1/Screens/actors_detailed_screen.dart';
 import 'package:flutter_application_1/repttext.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application_1/Constants.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class searchbarfun2 extends StatefulWidget {
   const searchbarfun2({Key? key}) : super(key: key);
@@ -105,18 +104,6 @@ class _searchbarfun2State extends State<searchbarfun2> {
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                     onPressed: () {
-                      Fluttertoast.showToast(
-                        webBgColor: "#000000",
-                        webPosition: "center",
-                        webShowClose: true,
-                        msg: "Search Cleared",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 2,
-                        backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
-                        textColor: Colors.white,
-                        fontSize: 16.0,
-                      );
                       setState(() {
                         searchtext.clear();
                         FocusManager.instance.primaryFocus?.unfocus();
