@@ -13,6 +13,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _firstNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -38,6 +39,13 @@ class _SignUpPageState extends State<SignUpPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            TextField(
+              controller: _firstNameController,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: 'First Name',
+              ),
+            ),
             TextField(
               controller: _emailController,
               style: TextStyle(color: Colors.white),
