@@ -11,9 +11,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _emailController = TextEditingController(); // Controller for email text field
+  TextEditingController _firstNameController = TextEditingController(); // Controller for first name text field
+  TextEditingController _passwordController = TextEditingController(); // Controller for password text field
 
   @override
   void dispose() {
@@ -77,8 +77,8 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> _signUpWithEmailAndPassword() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
+        email: _emailController.text, // Getting email from text field
+        password: _passwordController.text, // Getting password from text field
       );
        await saveUserInformationToFirestore(_firstNameController.text, _emailController.text);
       

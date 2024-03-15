@@ -3,7 +3,7 @@ import 'package:flutter_application_1/API/api.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Models/list_series.dart';
 import 'package:flutter_application_1/Screens/all_movies.dart';
-import 'package:flutter_application_1/Screens/show_all_movies.dart';
+
 import 'package:flutter_application_1/repttext.dart';
 import 'package:flutter_application_1/widgets/movies.dart';
 import 'package:flutter_application_1/widgets/navigation_drawer.dart';
@@ -21,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // Declarations of variables to hold future data
   late Future<List<ListMovies>> trendingMovies;
   late Future<List<ListMovies>> topratedMovies;
   late Future<List<ListMovies>> upcomingMovies;
@@ -34,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<ListSeries>> highestGrossingSeries;
   bool showSearchBar1 = true;
 
+// Initializing state, fetching initial data
   @override
   void initState() {
     super.initState();
@@ -50,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
     bestMovies= API().getBestMovies();
   }
 
+// Navigation function
   void _navigateToShowAllMoviesScreen(String movieType) {
     Navigator.push(
       context,
@@ -61,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Main Widget
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
@@ -80,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   
-                  
+                  // Tab bar for switching between movies and series
                    TabBar(
                     labelColor: Colors.white, 
                     unselectedLabelColor: Colours.tabTitles,
@@ -103,6 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 tittletext("Trending Movies"),
                                 const SizedBox(height: 16),
                                 FutureBuilder(
+                                  // Fetching trending movies asynchronously
                                   future: trendingMovies,
                                   builder: (context, snapshot) {
                                     if (snapshot.hasError) {
@@ -110,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Text(snapshot.error.toString()),
                                       );
                                     } else if (snapshot.hasData) {
-                                      return TrendingMovies(snapshot: snapshot);
+                                      return TrendingMovies(snapshot: snapshot);// Displaying trending movies
                                     } else {
                                       return const Center(
                                         child: CircularProgressIndicator(),
@@ -127,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           showSearchBar1 = true;
                                         });
                                       },
-                                      child: Text('Title'),
+                                      child: Text('Title'),// Search by title button
                                     ),
                                   ElevatedButton(
                                       onPressed: () {
@@ -135,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           showSearchBar1 = false;
                                         });
                                       },
-                                      child: Text('Actor'),
+                                      child: Text('Actor'),// Search by actorbutton
                                     ),
                                   ],
                                 ),
@@ -143,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     searchbarfun(),
                                 if (!showSearchBar1)
                                     searchbarfun2(),
-                                const SizedBox(height: 2),
+                                const SizedBox(height: 1),
                                 tittletext("Top rated movies"),
                                 Align(
                                   alignment: Alignment.topRight,
@@ -154,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Text('See more'),
                                   ),
                                 ),
-                                const SizedBox(height: 5),
+                                const SizedBox(height: 1),
                                 SizedBox(
                                   child: FutureBuilder(
                                     future: topratedMovies,

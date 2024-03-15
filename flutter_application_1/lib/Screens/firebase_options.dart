@@ -34,7 +34,7 @@ class DefaultFirebaseOptions {
      'DefaultFirebaseOptions are not supported for this platform.',
    );
  }
-
+// FirebaseOptions for web platform
  static const FirebaseOptions web = FirebaseOptions(
    apiKey: 'AIzaSyBrSwe7RMKMICi7HNMfntHdJ903EuwQgjA',
    appId: '1:649394853723:android:1cd1231a1ac513ffb72c7e',
@@ -44,7 +44,7 @@ class DefaultFirebaseOptions {
    storageBucket: 'flutterfire-ui-codelab.appspot.com',
    measurementId: 'G-DGF0CP099H',
  );
-
+// FirebaseOptions for android platform
  static const FirebaseOptions android = FirebaseOptions(
    apiKey: 'AIzaSyBrSwe7RMKMICi7HNMfntHdJ903EuwQgjA',
    appId: '1:649394853723:android:1cd1231a1ac513ffb72c7e',
@@ -53,6 +53,7 @@ class DefaultFirebaseOptions {
    storageBucket: 'flutterfire-ui-codelab.appspot.com',
  );
 
+ // FirebaseOptions for macOS platform
  static const FirebaseOptions ios = FirebaseOptions(
    apiKey: 'AIzaSyBrSwe7RMKMICi7HNMfntHdJ903EuwQgjA',
    appId: '1:963656261848:ios:d9e01cfe8b675dfcb237ad',

@@ -10,7 +10,7 @@ class WatchedListScreen extends StatefulWidget {
 }
 
 class _WatchedListScreenState extends State<WatchedListScreen> {
-  bool _isAscending = true;
+  bool _isAscending = true; // Variable to track sorting order
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _WatchedListScreenState extends State<WatchedListScreen> {
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(), // Loading indicator while waiting for data
             );
           }
           if (snapshot.hasError) {
@@ -55,7 +55,7 @@ class _WatchedListScreenState extends State<WatchedListScreen> {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
               Map<String, dynamic> data =
-                  doc.data() as Map<String, dynamic>;
+                  doc.data() as Map<String, dynamic>; // Extracting movie data
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(

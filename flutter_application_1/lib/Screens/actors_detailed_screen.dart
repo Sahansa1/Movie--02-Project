@@ -3,6 +3,8 @@ import 'package:flutter_application_1/Constants.dart';
 import 'package:flutter_application_1/Models/list_actors.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 import 'package:flutter_application_1/Screens/movie_detailed_screen.dart';
+import 'package:flutter_application_1/colour.dart';
+import 'package:flutter_application_1/repttext.dart';
 
 
 class ActorsDetailsScreen extends StatelessWidget {
@@ -21,6 +23,7 @@ class ActorsDetailsScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
   return Scaffold(
+    backgroundColor: Colours.colBackground,
     body: CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -42,39 +45,32 @@ class ActorsDetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  actor.name,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
+                overviewTtitle(
+                  'actor.name'
                   ),
-                ),
+                
                 SizedBox(height: 16),
-                Text(
+                datetext(
                   'Original Name: ${actor.original_name}',
                 ),
                 SizedBox(height: 8),
-                Text(
+                datetext(
                   'Popularity: ${actor.popularity.toString()}',
                 ),
                 SizedBox(height: 8),
                 if (actor.gender == 1)
-                  const Text(
+                  datetext(
                     'Gender: Female',
                   ),
                 if (actor.gender == 2)
-                  const Text(
+                  datetext(
                     'Gender: Male',
                   ),
                 
                 SizedBox(height: 16),
-                const Text(
+                 datetext(
                   'Movies Done:',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                  
                 ),
               ],
             ),
@@ -87,8 +83,8 @@ class ActorsDetailsScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: actor.known_for.length,
               itemBuilder: (context, index) {
+                // Creating a movie object from the data
                 final movie = ListMovies(
-     
                   id: actor.known_for[index]['id'],
                   title: actor.known_for[index]['title'],
                   backdrop_path: actor.known_for[index]['backdrop_path'], 
@@ -103,6 +99,7 @@ class ActorsDetailsScreen extends StatelessWidget {
                                   
                 return GestureDetector(
                   onTap: () {
+                    // Navigating to the movie details screen when tapped
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -127,17 +124,15 @@ class ActorsDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text(
+                        // Displaying movie title
+                        datetext(
                           movie.title,
-                          style: TextStyle(fontSize: 16),
-                          textAlign: TextAlign.center,
+                          
                         ),
                       ],
                     ),
                   ),
                 );
-
-                
               },
             ),
           ),

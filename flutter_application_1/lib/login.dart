@@ -48,6 +48,7 @@ class _AuthGateState extends State<AuthGate> {
     return FutureBuilder<bool>(
       future: _shouldNavigateToHome,
       builder: (context, snapshot) {
+        //check the connectivity status
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
             backgroundColor: Color.fromRGBO(0, 0, 0, 1),

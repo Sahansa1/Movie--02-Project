@@ -49,26 +49,3 @@ Future<void> saveMovieDetailsToFirestore(String userId, ListMovies movie, String
     print('Error saving movie details: $e');
   }
 }
-
-// // Function to save user email to Firestore
-// Future<void> saveUserNameToFirestore(String name) async {
-//   try {
-//     // Get the current user
-//     User? user = FirebaseAuth.instance.currentUser;
-//     if (user != null) {
-//       // Reference to the users collection in Firestore
-//       CollectionReference<Map<String, dynamic>> users =
-//           FirebaseFirestore.instance.collection('users');
-
-//       // Add a new document with a generated ID
-//       await users.doc(user.uid).set({
-//         'name': name,
-//         // You can add more fields as per your requirement
-//       });
-//     } else {
-//       print('User is not signed in.');
-//     }
-//   } catch (e) {
-//     print('Error saving user information: $e');
-//   }
-// }

@@ -11,12 +11,12 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  DependencyInjection.init();
+  DependencyInjection.init();// Initialize dependency injection
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key); // Constructor for MyApp widget
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color.fromARGB(255, 235, 228, 189),
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: SplashScreen(), // Displaying the splash screen as the initial route
     );
   }
 }

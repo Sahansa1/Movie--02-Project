@@ -10,10 +10,12 @@ class NetworkController extends GetxController {
     super.onInit();
     _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
-
+  
+  // Method to handle changes in connectivity status
   void _updateConnectionStatus(ConnectivityResult connectivityResult) {
 
     if (connectivityResult == ConnectivityResult.none){
+      // If there is no internet connection
       Get.rawSnackbar(
         messageText: const Text(
           'Please Connect to the Internet',
@@ -31,6 +33,7 @@ class NetworkController extends GetxController {
       );
     }else {
       if (Get.isSnackbarOpen) {
+        // If there is internet connection
         Get.closeCurrentSnackbar();
         }
     }

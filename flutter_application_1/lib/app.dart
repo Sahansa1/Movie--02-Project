@@ -7,13 +7,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // Disabling debug banner
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Container(
         color: Colours.colBackground, 
-        child: const AuthGate(),
+        child: const AuthGate(),// Displaying the login screen
       ),
     );
   }

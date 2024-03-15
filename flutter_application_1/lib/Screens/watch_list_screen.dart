@@ -39,14 +39,17 @@ class _WatchListScreenState extends State<WatchListScreen> {
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
+              // Display a loading indicator while waiting for data
               child: CircularProgressIndicator(),
             );
           }
+          // Handle any error that occurred during data retrieval
           if (snapshot.hasError) {
             return Center(
               child: Text('Error: ${snapshot.error}'),
             );
           }
+          // If no data is available or the data list is empty, display a message
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(
               child: Text('No movies added to watch list.'),
@@ -56,7 +59,7 @@ class _WatchListScreenState extends State<WatchListScreen> {
             // Display the list of movies
             children: snapshot.data!.docs.map((doc) {
               Map<String, dynamic> data =
-                  doc.data() as Map<String, dynamic>;
+                  doc.data() as Map<String, dynamic>;// Extracting movie data from document
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
