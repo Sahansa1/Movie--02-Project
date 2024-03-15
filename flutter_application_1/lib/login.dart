@@ -1,8 +1,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screens/home.dart';
 import 'package:flutter_application_1/Screens/homepage.dart';
 import 'package:flutter_application_1/colour.dart';
 import 'package:flutter_application_1/database_manager/database_manager.dart';
@@ -22,6 +20,8 @@ class _AuthGateState extends State<AuthGate> {
   bool _rememberMeChecked = false;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _firstNameController = TextEditingController();
+
 
   @override
   void initState() {
@@ -162,7 +162,7 @@ class _AuthGateState extends State<AuthGate> {
         await prefs.setBool('login_status', true);
         
       }
-      saveUserInfoToFirestore(_emailController.text);
+      saveUserInformationToFirestore(_emailController.text,_firstNameController.text);
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),

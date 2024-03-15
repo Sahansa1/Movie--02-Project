@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/colour.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_application_1/login.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
-
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -28,8 +26,8 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       backgroundColor: Colours.colBackground,
       appBar: AppBar(
-        title: Text('Sign Up',
-        style: TextStyle(color: const Color.fromARGB(255, 87, 87, 87))),
+        title: const Text('Sign Up',
+        style: TextStyle(color: Color.fromARGB(255, 87, 87, 87))),
          backgroundColor: Color.fromARGB(255, 18, 1, 18),
          ),
 
@@ -42,28 +40,27 @@ class _SignUpPageState extends State<SignUpPage> {
             TextField(
               controller: _firstNameController,
               style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'First Name',
               ),
             ),
             TextField(
               controller: _emailController,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
                 labelText: 'Email',
-                
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextField(
               controller: _passwordController,
               obscureText: true,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
                 labelText: 'Password',
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 _signUpWithEmailAndPassword();
@@ -91,6 +88,6 @@ class _SignUpPageState extends State<SignUpPage> {
     } catch (error) {
       // Handle sign-up errors
       print('Sign up error: $error');
-  }
+    }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/watch_list_screen.dart';
@@ -17,14 +18,33 @@ class MenuDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('nanan'), 
-            accountEmail: Text('lalalal@dadad'), 
-            //currentAccountPicture: CircleAvatar(
-            //  child: Iamge.,
-            decoration: BoxDecoration(
-              color: Colours.colBackground,
-            ),
+          accountName: StreamBuilder<DocumentSnapshot>(
+            stream: FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid).snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Text("Loading...");
+              }
+              var userDocument = snapshot.data!;
+              return Text(userDocument['name']);
+            },
           ),
+          accountEmail: StreamBuilder<DocumentSnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(FirebaseAuth.instance.currentUser!.uid)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Text("Loading...");
+                }
+                var userDocument = snapshot.data!;
+                return Text(userDocument['email']);
+              },
+            ),
+          decoration: BoxDecoration(
+            color: Colours.colBackground,
+          ),
+        ),
           ListTile(
             leading: const Icon(Icons.favorite), 
             title: const Text('Watch List'),

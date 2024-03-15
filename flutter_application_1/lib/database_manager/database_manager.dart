@@ -1,22 +1,19 @@
-
+//Saving to firestore
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/Models/list_movies.dart';
 
-// Function to save user information to Firestore
-Future<void> saveUserInfoToFirestore(String email) async {
+//saving user info to firebase
+Future<void> saveUserInformationToFirestore(String name, String email) async {
   try {
-    // Get the current user
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      // Reference to the users collection in Firestore
       CollectionReference<Map<String, dynamic>> users =
           FirebaseFirestore.instance.collection('users');
 
-      // Add a new document with a generated ID
       await users.doc(user.uid).set({
+        'name': name,
         'email': email,
-        // You can add more fields as per your requirement
       });
     } else {
       print('User is not signed in.');
@@ -25,6 +22,7 @@ Future<void> saveUserInfoToFirestore(String email) async {
     print('Error saving user information: $e');
   }
 }
+
 
 Future<void> saveMovieDetailsToFirestore(String userId, ListMovies movie, String listType) async {
   try {
@@ -51,3 +49,26 @@ Future<void> saveMovieDetailsToFirestore(String userId, ListMovies movie, String
     print('Error saving movie details: $e');
   }
 }
+
+// // Function to save user email to Firestore
+// Future<void> saveUserNameToFirestore(String name) async {
+//   try {
+//     // Get the current user
+//     User? user = FirebaseAuth.instance.currentUser;
+//     if (user != null) {
+//       // Reference to the users collection in Firestore
+//       CollectionReference<Map<String, dynamic>> users =
+//           FirebaseFirestore.instance.collection('users');
+
+//       // Add a new document with a generated ID
+//       await users.doc(user.uid).set({
+//         'name': name,
+//         // You can add more fields as per your requirement
+//       });
+//     } else {
+//       print('User is not signed in.');
+//     }
+//   } catch (e) {
+//     print('Error saving user information: $e');
+//   }
+// }
