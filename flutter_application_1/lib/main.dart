@@ -1,20 +1,4 @@
 
-
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:flutter_application_1/Screens/firebase_options.dart';
-// import 'package:flutter_application_1/app.dart';
-
-
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-//   runApp(MyApp()); // Instead of directly running MyApp, run the splash screen first
-// }
-
-
-//import 'package:MovieFlixer/material_app/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/Screens/firebase_options.dart';
 import 'package:flutter_application_1/network_controller/dependency_injection.dart';
@@ -43,5 +27,4 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
     );
   }
-
 }

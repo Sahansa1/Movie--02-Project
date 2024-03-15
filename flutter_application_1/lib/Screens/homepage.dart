@@ -67,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
         length: 2,
         child:Scaffold(
           backgroundColor: Colours.colBackground,
-          //const Color.fromRGBO(66, 20, 32,0),
           drawer: const MenuDrawer(),
             body: Stack(
             children: [
@@ -79,13 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: Center(
                       child: Image.asset('assets/bingewatch_wording.png', width: 200), // Center the logo and make it bigger
                     ),
-                    actions: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.settings),
-                      )
-                    ],
                   ),
+                  
+                  
                    TabBar(
                     labelColor: Colors.white, 
                     unselectedLabelColor: Colours.tabTitles,
@@ -302,7 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 16),
-                                const Text('Trending Series',),
+                                tittletext('Trending Series',),
                                 const SizedBox(height: 16),
                                 FutureBuilder(
                                   future: trendingSeries,
@@ -322,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }, 
                                 ),
                                 const SizedBox(height: 16),
-                                const Text(
+                                tittletext(
                                   "Top rated series",
                                 ),
                                 const SizedBox(height: 5),
@@ -343,7 +338,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                const Text(
+                                tittletext(
                                   "UpComing series",
                                 ),
                                 const SizedBox(height: 5),
@@ -364,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                const Text(
+                                tittletext(
                                   "Children Friendly Series",
                                 ),
                                 const SizedBox(height: 5),
@@ -384,7 +379,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     }
                                   ),
                                 ),
-                                const Text(
+                                tittletext(
                                   "Highest Grossing Series",
                                 ),
                                 const SizedBox(height: 5),

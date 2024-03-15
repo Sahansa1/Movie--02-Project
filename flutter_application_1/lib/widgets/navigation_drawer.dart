@@ -37,12 +37,19 @@ class MenuDrawer extends StatelessWidget {
                 if (!snapshot.hasData) {
                   return Text("Loading...");
                 }
+
                 var userDocument = snapshot.data!;
                 return Text(userDocument['email']);
               },
             ),
+            currentAccountPicture: Image.asset(
+              'assets/mug.png', 
+              width:300, 
+              height: 300, 
+            ),
           decoration: BoxDecoration(
             color: Colours.colBackground,
+            
           ),
         ),
           ListTile(

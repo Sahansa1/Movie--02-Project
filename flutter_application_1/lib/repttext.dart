@@ -68,7 +68,7 @@ Widget datetext(String title) {
       style: TextStyle(
           fontFamily: 'open sans',
           decoration: TextDecoration.none,
-          color: const Color.fromARGB(255, 152, 151, 151).withOpacity(0.9),
+          color: Color.fromARGB(255, 220, 210, 210).withOpacity(0.9),
           fontSize: 10,
           fontWeight: FontWeight.w500,
           letterSpacing: 1.02));
@@ -131,7 +131,7 @@ Widget overviewTtitle(String title) {
         fontFamily: 'open sans',
         decoration: TextDecoration.none,
         color: Colors.white.withOpacity(0.9),
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: FontWeight.w400,
         letterSpacing: 1.25,
       ),
@@ -181,5 +181,15 @@ Widget Tabbartext(String title) {
           fontSize: 15,
           fontWeight: FontWeight.w500,
           letterSpacing: 1));
+}
+Widget datestext(String title) {
+  return Text(title,
+      style: TextStyle(
+          fontFamily: 'open sans',
+          decoration: TextDecoration.none,
+          color: const Color.fromARGB(255, 152, 151, 151).withOpacity(0.9),
+          fontSize: 10,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 1.02));
 }
 

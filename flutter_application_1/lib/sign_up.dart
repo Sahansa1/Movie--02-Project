@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/colour.dart';
+import 'package:flutter_application_1/database_manager/database_manager.dart';
 import 'package:flutter_application_1/login.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -79,6 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
         email: _emailController.text,
         password: _passwordController.text,
       );
+       await saveUserInformationToFirestore(_firstNameController.text, _emailController.text);
       
       // If sign-up is successful, you can navigate the user to another screen, e.g., HomeScreen
       Navigator.pushReplacement(

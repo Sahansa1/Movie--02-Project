@@ -13,7 +13,6 @@ import 'package:flutter_application_1/Screens/homepage.dart';
 import 'package:flutter_application_1/network_controller/dependency_injection.dart';
 import 'package:flutter_application_1/widgets/splash_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_application_1/main.dart';
 
   void main() {
