@@ -16,6 +16,7 @@ class searchbarfun extends StatefulWidget {
 class _searchbarfunState extends State<searchbarfun> {
   List<Map<String, dynamic>> searchresult = [];
 
+//Function to search for the movie with the query provided
   Future<List<ListMovies>> searchlistfunction(String query) async {
     List<ListMovies> searchResults = [];
 
@@ -28,6 +29,7 @@ class _searchbarfunState extends State<searchbarfun> {
       var tempdata = jsonDecode(response.body);
       var searchjson = tempdata['results'];
       for (var i = 0; i < searchjson.length; i++) {
+        // Check if essential movie details are not null
         if (searchjson[i]['id'] != null &&
             searchjson[i]['poster_path'] != null &&
             searchjson[i]['backdrop_path'] != null &&
@@ -35,6 +37,7 @@ class _searchbarfunState extends State<searchbarfun> {
             searchjson[i]['title'] != null &&
             searchjson[i]['original_title'] != null &&
             searchjson[i]['vote_average'] != null) {
+              // Add movie details to search result list
           searchresult.add({
             'id': searchjson[i]['id'],
             'poster_path': searchjson[i]['poster_path'],
@@ -46,6 +49,7 @@ class _searchbarfunState extends State<searchbarfun> {
             'popularity': searchjson[i]['popularity'],
             'overview': searchjson[i]['overview'],
           });
+          // Limit the search result list to 20 items
 
           if (searchresult.length > 20) {
             searchresult.removeRange(20, searchresult.length);
@@ -123,6 +127,7 @@ class _searchbarfunState extends State<searchbarfun> {
             const SizedBox(
               height: 50,
             ),
+             // Display search results if query text is not empty
             searchtext.text.length > 0
                 ? FutureBuilder(
                     future: searchlistfunction(query1),

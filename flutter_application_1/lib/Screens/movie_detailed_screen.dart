@@ -35,7 +35,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     _initWatchList();
   }
 
-  
+  // Initialize the state of whether the movie is in the watch list
   void _initWatchedList() async {
   final isOnWatchedList = await checkIfOnWatchedList();
   setState(() {
@@ -43,7 +43,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     this.isOnWatchedList = isOnWatchedList;
   });
 }
-
+// Check if the movie is in the watched list
 void _initWatchList() async {
   final isOnWatchList = await checkIfOnWatchList();
   setState(() {
@@ -89,7 +89,7 @@ Future<bool> checkIfOnWatchList() async {
   return false;
 }
 
-
+// Remove movie from watched list in Firestore
 Future<void> removeFromWatchedList(String userId, int movieId) async {
   try {
     final querySnapshot = await FirebaseFirestore.instance
@@ -152,7 +152,7 @@ Widget _buildInfoBox(String title, String value) {
             value,
             style: TextStyle(
               fontWeight: FontWeight.normal,
-              color: Colors.white, // Value color
+              color: Colors.white, 
             ),
           ),
         ),
@@ -160,8 +160,6 @@ Widget _buildInfoBox(String title, String value) {
     ),
   );
 }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -221,6 +219,7 @@ Widget _buildInfoBox(String title, String value) {
                             // Call function to remove movie details from Firestore
                           } else {
                             // Add to Watched List
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Added to Watched List'),

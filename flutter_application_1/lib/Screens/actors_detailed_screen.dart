@@ -25,7 +25,7 @@ class ActorsDetailsScreen extends StatelessWidget {
       slivers: [
         SliverAppBar(
           leading: const BackButton(),
-          backgroundColor: Colors.amber,
+          backgroundColor: const Color.fromARGB(255, 39, 38, 37),
           expandedHeight: 500,
           pinned: true,
           flexibleSpace: FlexibleSpaceBar(

@@ -147,7 +147,7 @@ class _AuthGateState extends State<AuthGate> {
       },
     );
   }
-
+// Function to handle email and password authentication
   Future<void> _signInWithEmailAndPassword() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -162,7 +162,11 @@ class _AuthGateState extends State<AuthGate> {
         await prefs.setBool('login_status', true);
         
       }
+      // Save user information to Firestore upon successful login
       saveUserInformationToFirestore(_emailController.text,_firstNameController.text);
+
+      // Navigate to the HomeScreen
+
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),

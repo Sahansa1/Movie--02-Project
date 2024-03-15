@@ -88,6 +88,7 @@ class _searchbarfun2State extends State<searchbarfun2> {
               child: TextField(
                 autofocus: false,
                 controller: searchtext,
+                style: const TextStyle(color: Colors.white),
                 onSubmitted: (query) {
                   searchresult.clear();
                   setState(() {
@@ -119,7 +120,7 @@ class _searchbarfun2State extends State<searchbarfun2> {
                     color: Color.fromARGB(255, 121, 121, 121),
                   ),
                   hintText: 'Search Actors',
-                  hintStyle: const TextStyle(color: Color.fromARGB(255, 74, 74, 72)),
+                  hintStyle: const TextStyle(color: Color.fromARGB(255, 153, 153, 152)),
                   border: InputBorder.none,
                 ),
               ),
@@ -139,8 +140,8 @@ class _searchbarfun2State extends State<searchbarfun2> {
                     height: 400,
                     child: Column(
                       children: [
-                        Text(query1),
-                        Text(searchresult.length.toString()), // Text added here
+                       // Text(query1),
+                       //Text(searchresult.length.toString()), // Text added here
                         Expanded(
                           child: ListView.builder(
                             itemCount: searchresult.length,

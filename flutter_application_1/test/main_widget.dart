@@ -1,14 +1,8 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+//Test case to see transitioning from the splash screen to the main app screen after a certain duration.
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/firebase_options.dart';
-import 'package:flutter_application_1/Screens/homepage.dart';
 
 import 'package:flutter_application_1/network_controller/dependency_injection.dart';
 import 'package:flutter_application_1/widgets/splash_screen.dart';
